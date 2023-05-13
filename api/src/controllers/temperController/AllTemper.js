@@ -7,17 +7,20 @@ const getAllTemper = async () => {
   // for get an array of tempers(stirngs)
   const getTemper = getDogs
     .map((dog) => dog.temperament)
-    .join("")
-    .split(/,\s*/);
+    .join(", ")
+    .split(", ");
+  
+  const getFilteredTemper = getTemper.filter(temper => temper !== "");
+  
 
-  getTemper.forEach((temper) => {
+  getFilteredTemper.forEach((temper) => {
     Temperament.findOrCreate({
-      where: { name: temper },
+      where: { name: temper.toLowerCase() },
     });
   });
 
   const allTemper = Temperament.findAll();
-  if (!allTemper) throw Error("No se han podido obtener los temperamentos desde la DB");
+  if (!allTemper) throw Error("Can't get temperaments form DB");
 
   return allTemper;
 };
