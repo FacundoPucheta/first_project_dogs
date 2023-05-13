@@ -16,6 +16,7 @@ const getApiData = async () =>
         temperament: dog.temperament,
       };
     });
+    if(!dogsInfo.length) throw Error ("No se podido solicitar la información de manera correcta.")
     return dogsInfo;
   });
 
