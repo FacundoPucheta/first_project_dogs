@@ -1,5 +1,5 @@
 const temperRouter = require("express").Router();
-const getAllTemper = require("../../controllers/temperController/getAllTemper");
+const getAllTemper = require("../../controllers/temperController/AllTemper");
 //Acá importaremos los handlers
 
 temperRouter.get("/", async (req, res) => {

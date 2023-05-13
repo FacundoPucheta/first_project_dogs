@@ -1,5 +1,5 @@
-const getApiData = require("../getApiData");
-const getDbData = require("../getDbData");
+const getApiData = require("../ApiData");
+const getDbData = require("../DbData");
 
 const getAllDogs = async () => {
   const infoApi = await getApiData();

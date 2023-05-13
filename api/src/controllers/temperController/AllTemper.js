@@ -1,4 +1,4 @@
-const getApiData = require("../getApiData");
+const getApiData = require("../ApiData");
 const { Temperament } = require("../../db");
 
 const getAllTemper = async () => {
