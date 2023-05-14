@@ -6,29 +6,29 @@ const dogsRouter = require("express").Router();
 //Aca importare los handlers!
 
 dogsRouter.get("/", async (req, res) => {
+  const { name } = req.query;
   try {
-    const allDogs = await getAllDogs();
-    return res.status(200).json(allDogs);
+    const getDogs = name ? await getDogByName(name) : await getAllDogs();
+    return res.status(200).json(getDogs);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }
 });
 
-dogsRouter.get("/name", async (req, res) => {
-  // esta bien así? o teiene que ser "/name?="
-  try {
-    const { name } = req.query;
-    const dogByName = await getDogByName(name);
-    return res.status(200).json(dogByName);
-  } catch (error) {
-    return res.status(400).json({ error: error.message });
-  }
-});
+// dogsRouter.get("/name", async (req, res) => {
+//   // esta bien así? o teiene que ser "/name?="
+//   try {
+//     const dogByName = await getDogByName(name);
+//     return res.status(200).json(dogByName);
+//   } catch (error) {
+//     return res.status(400).json({ error: error.message });
+//   }
+// });
 
-dogsRouter.get("/:idRaza", async (req, res) => {
+dogsRouter.get("/:id", async (req, res) => {
+  const { id } = req.params;
   try {
-    const { idRaza } = req.params;
-    const dogById = await getDogById(idRaza);
+    const dogById = await getDogById(id);
     return res.status(200).json(dogById);
   } catch (error) {
     return res.status(400).json({ error: error.message });

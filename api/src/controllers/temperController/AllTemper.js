@@ -2,27 +2,32 @@ const getApiData = require("../ApiData");
 const { Temperament } = require("../../db");
 
 const getAllTemper = async () => {
-  const getDogs = await getApiData();
+  const allTemperDB = await Temperament.findAll();
 
-  // for get an array of tempers(stirngs)
-  const getTemper = getDogs
-    .map((dog) => dog.temperament)
-    .join(", ")
-    .split(", ");
-  
-  const getFilteredTemper = getTemper.filter(temper => temper !== "");
-  
+  if (allTemperDB.length === 0) {
+    const getDogs = await getApiData();
 
-  getFilteredTemper.forEach((temper) => {
-    Temperament.findOrCreate({
-      where: { name: temper.toLowerCase() },
+    // for get an array of tempers(stirngs)
+    const getTemper = getDogs
+      .map((dog) => dog.temperament)
+      .join(", ")
+      .split(", ");
+
+    const getFilteredTemper = getTemper.filter((temper) => temper !== "");
+
+    getFilteredTemper.forEach((temper) => {
+      Temperament.findOrCreate({
+        where: { name: temper.toLowerCase() },
+      });
     });
-  });
 
-  const allTemper = Temperament.findAll();
-  if (!allTemper) throw Error("Can't get temperaments form DB");
+    const allTemper = Temperament.findAll();
+    if (!allTemper) throw Error("Can't get temperaments form DB");
 
-  return allTemper;
+    return allTemper;
+  } else {
+    return allTemperDB;
+  }
 };
 
 module.exports = getAllTemper;

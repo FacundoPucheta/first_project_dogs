@@ -7,7 +7,7 @@ const getDogByName = async (name) => {
 
     const dogsFound = allDogs.filter((dog) => dog.name.toLowerCase().includes(name.toLowerCase()));
 
-    if(!dogsFound.length) throw Error(`No dogs with the name '${name}' found.`);
+    if(!dogsFound.length) throw Error(`No breeds with the name '${name}' found.`);
 
     return dogsFound;
 
