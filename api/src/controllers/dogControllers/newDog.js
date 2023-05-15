@@ -24,7 +24,7 @@ const postNewDog = async ({
 
   newTemperament.forEach(async (temper) => {
     const findTemper = await Temperament.findOne({
-      where: { name: temper.toLowerCase() },
+      where: { name: temper },
     });
 
     newDog.addTemperament(findTemper);
