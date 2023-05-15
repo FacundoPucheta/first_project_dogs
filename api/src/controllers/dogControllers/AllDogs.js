@@ -6,7 +6,7 @@ const getAllDogs = async () => {
   const infoDb = await getDbData();
   
   const allDogs = [...infoApi, ...infoDb];
-  if (!allDogs.length) throw Error("No se encontraron perros para mostrar.");
+  if (!allDogs.length) throw Error("No dogs found.");
   return allDogs;
 };
 
