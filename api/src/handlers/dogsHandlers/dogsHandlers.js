@@ -15,8 +15,9 @@ const allDogs = async (req, res) => {
 
 const idBreedsDogs = async (req, res) => {
   const { id } = req.params;
+  const source = isNaN(id) ? "DB" : "dogsApi";
   try {
-    const dogById = await getDogById(id);
+    const dogById = await getDogById(id, source);
     return res.status(200).json(dogById);
   } catch (error) {
     return res.status(400).json({ error: error.message });
