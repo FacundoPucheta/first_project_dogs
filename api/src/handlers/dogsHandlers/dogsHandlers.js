@@ -13,7 +13,7 @@ const allDogs = async (req, res) => {
   }
 };
 
-const idRazaDogs = async (req, res) => {
+const idBreedsDogs = async (req, res) => {
   const { id } = req.params;
   try {
     const dogById = await getDogById(id);
@@ -35,6 +35,6 @@ const createDog = async (req, res) => {
 
 module.exports = {
   allDogs,
-  idRazaDogs,
+  idBreedsDogs,
   createDog,
 };

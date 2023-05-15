@@ -13,6 +13,7 @@ const getApiData = async () =>
         weight: dog.weight.metric,
         height: dog.height.metric,
         life_span: dog.life_span,
+        belongToDb: false,
         temperament: dog.temperament,
       };
     });

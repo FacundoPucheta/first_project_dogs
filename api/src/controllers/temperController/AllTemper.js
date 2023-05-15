@@ -15,13 +15,13 @@ const getAllTemper = async () => {
 
     const getFilteredTemper = getTemper.filter((temper) => temper !== "");
 
-    getFilteredTemper.forEach((temper) => {
-      Temperament.findOrCreate({
+    getFilteredTemper.forEach( async (temper) => {
+      await Temperament.findOrCreate({
         where: { name: temper.toLowerCase() },
       });
     });
 
-    const allTemper = Temperament.findAll();
+    const allTemper = await Temperament.findAll();
     if (!allTemper) throw Error("Can't get temperaments form DB");
 
     return allTemper;
