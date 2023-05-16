@@ -2,6 +2,7 @@ const getApiData = require("../ApiData");
 const { Dog, Temperament } = require("../../db");
 
 const getDogById = async (id, source) => {
+  
   const getApiDogs = async (id) => {
     let apiDogs = await getApiData();
     apiDogs = apiDogs.find((dog) => dog.id === +id);

@@ -24,8 +24,7 @@ const getDbData = async () => {
       belongToDb: dog.belongToDb,
       temperament: dog.temperaments
         .map((temp) => temp.name.charAt(0).toUpperCase() + temp.name.slice(1))
-        .join(", ")
-        .trim(),
+        .join(", "),
     };
   });
   return dbData;
