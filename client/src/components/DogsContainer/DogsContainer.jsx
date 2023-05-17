@@ -64,9 +64,9 @@ const DogsContainer = () => {
              image={dog.image}
              name={dog.name}
              minWeight={dog.weight.split("-")[0]?.trim()}
-             maxWeight={dog.weight.split("-")[1]?.trim()}
+             maxWeight={dog.weight.includes("-") ? dog.weight.split("-")[1]?.trim() : dog.weight}
              minHeight={dog.height.split("-")[0]?.trim()}
-             maxHeight={dog.height.split("-")[1]?.trim()}
+             maxHeight={dog.height.includes("-") ? dog.height.split("-")[1]?.trim() : dog.height}
              life_span={dog.life_span}
              temperament={dog.temperament}
              />
