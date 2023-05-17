@@ -1,7 +1,14 @@
+import { Link}  from "react-router-dom";
+import style from "./DogCard.module.css";
+
 const DogCard = (props) => {
+
+
     return (
-      <div>
+      <div className={style.card}>
+        <Link to={`/detail/${props.id}`}>
         <h3>Name:  "{props.name}"</h3>
+          </Link>
         <img src={props.image} alt={props.name}/>
         <p>Min Weight: {props.minWeight} kg</p>
         <p>Max Weight: {props.maxWeight} kg</p>
