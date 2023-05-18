@@ -3,8 +3,10 @@ import style from "./DogsContainer.module.css";
 import { useSelector } from "react-redux";
 
 const DogsContainer = () => {
+
   const {dogs} = useSelector((state) => state.dogs);
   
+
   return (
     <div className={style.container}>
       {dogs?.map((dog) => {

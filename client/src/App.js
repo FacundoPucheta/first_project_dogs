@@ -6,16 +6,12 @@ import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
   
-  const location = useLocation().pathname;
-  
-  
-  
-  
+  const location = useLocation().pathname;  
   
   return (
     <div className="App">
 
-      {(location !== "/" && location !== "/detail") && <NavBar />}
+      {(location !== "/" && !location.includes("detail")) && <NavBar />}
 
       <Routes>
       <Route path="/" element={<Landing />} /> 
