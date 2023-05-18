@@ -1,12 +1,37 @@
-import { NavLink } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
+import CardDetail from "../../components/CardDetail/CardDetail";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getDogById } from "../../redux/actions";
 
 const Detail = () => {
+  const dispatch = useDispatch();
+  const {id} = useParams();
+
+  useEffect(() => {
+    dispatch(getDogById(id));
+  }, [dispatch, id])
+
+  const dogs = useSelector((state) => state.dogs);
+
+    if (!dogs.image) return <div>Loading..</div>;
     return (
-      <>
-        <h1>Esta es la vista de Detail</h1>
-        <NavLink to="/home" style={{color: "orangered", outlineColor: "coral"}}>Volver!</NavLink>
-      </>
+      
+      <div>
+            <CardDetail 
+            key={dogs.id}
+            id={dogs.id}
+            image={dogs.image}
+            name={dogs.name}
+            height={dogs.height}
+            weight={dogs.weight}
+            temperament={dogs.temperament}
+            life_span={dogs.life_span}
+            />
+        <br></br>
+        <Link to="/home" style={{color: "orangered", outlineColor: "coral"}}>Volver!</Link>
+        </div>
+      
     );
   };
   

@@ -33,7 +33,7 @@ const getDogById = async (id, source) => {
       )
       .join(", ");
 
-    const getModDbDog = {
+    const newDbDog = {
       id: dbDogs.id,
       image: dbDogs.image,
       name: dbDogs.name,
@@ -44,7 +44,7 @@ const getDogById = async (id, source) => {
       temperament: temperProp,
     };
 
-    return getModDbDog;
+    return newDbDog;
   }
 
   return getApiDogs(id);

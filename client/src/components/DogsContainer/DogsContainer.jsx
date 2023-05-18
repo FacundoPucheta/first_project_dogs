@@ -4,12 +4,13 @@ import { useSelector } from "react-redux";
 
 const DogsContainer = () => {
   const {dogs} = useSelector((state) => state.dogs);
-  console.log(dogs);
+  
   return (
     <div className={style.container}>
       {dogs?.map((dog) => {
         return (
           <DogCard
+            key={dog.id}
             id={dog.id}
             image={dog.image}
             name={dog.name}
