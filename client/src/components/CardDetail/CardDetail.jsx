@@ -1,6 +1,9 @@
 // import style from "./CardDetail.module.css";
 
+
 const CardDetail = (props) => {
+
+
   return (
     <div>
       <div>

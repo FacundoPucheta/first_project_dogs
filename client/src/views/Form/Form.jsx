@@ -10,13 +10,14 @@ const Form = () => {
   const dispatch = useDispatch();
 
   const temperaments  = useSelector((state) => state.temperaments);
-  const orderedTempers = [...temperaments].sort((a, b) => (a.name > b.name ? 1 : -1));
+  // const orderedTempers = [...temperaments].sort((a, b) => (a.name > b.name ? 1 : -1));
 
   const [dogCreated, setDogCreated] = useState("");
+  const [selectScreen, setSelectScreen] = useState([]);
 
   const [newBreed, setNewBreed] = useState({
     name: "",
-    image: "",
+    image:"",
     minHeight: "",
     maxHeight: "",
     minWeight: "",
@@ -33,7 +34,7 @@ const Form = () => {
       height: `${newBreed.minHeight} - ${newBreed.maxHeight}`,
       weight: `${newBreed.minWeight} - ${newBreed.maxWeight}`,
       life_span: `${newBreed.minLifespan} - ${newBreed.maxLifespan} years`,
-  
+      
     };
     
     dispatch(createDog(newBreedCreated))
@@ -56,16 +57,20 @@ const Form = () => {
   
 
   const handleSelectChange = (event) => {
-    const optionsSelected = [...event.target.options].filter((option) => option.selected);
-    const temperSelected = optionsSelected.map((option) => option.value);
+    const optionsSelected = event.target.value;
+
+    setSelectScreen([
+      ...selectScreen, optionsSelected
+
+    ]);
+    
+  };
+  const addTemperHandler = (event) => {
+    event.preventDefault();
     setNewBreed({
       ...newBreed,
-      temperament: temperSelected,
+      temperament:[...newBreed.temperament ,...selectScreen]
     });
-  };
-
-  const addTemperHandler = () => {
-
   };
 
   useEffect(() => {
@@ -112,16 +117,18 @@ const Form = () => {
         <div>
           <label>Temperament:  </label>
           <select
-            size={1}
-            value={newBreed.temperament}
+            name="temper"
+            value={{selectScreen}}
             onChange={handleSelectChange}
           >
-            {orderedTempers?.map((temp) => {
-              return <option key={temp.id} value={temp.name}>
+            {temperaments?.map((temp) => {
+              return <option key={temp.id} value={temp.name} name={temp.name}>
               {temp.name}
             </option>;
             })}
           </select>
+          <br></br>
+          <div>{selectScreen}</div>
           <button onClick={addTemperHandler}>✔️</button>
         </div>
         <button onClick={handleSubmit}>Create!</button>

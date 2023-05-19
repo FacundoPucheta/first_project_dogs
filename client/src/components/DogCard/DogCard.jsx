@@ -10,6 +10,7 @@ const DogCard = (props) => {
   const handleDetail = () =>{
     dispatch(resetDog());  
   };
+  
   return (
     <div className={style.card}>
       <div className={style.imgContainer}>

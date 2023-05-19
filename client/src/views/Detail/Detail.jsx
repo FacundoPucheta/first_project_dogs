@@ -8,18 +8,19 @@ const Detail = () => {
   const dogs = useSelector((state) => state.dogs);
   const dispatch = useDispatch();
   const { id } = useParams();
+  const defaultImg = "https://img.ecartelera.com/noticias/fotos/24800/24860/5.jpg";
 
   useEffect(() => {
     dispatch(getDogById(id));
   }, [dispatch, id]);
 
-  if (!dogs.image) return <div>Loading..</div>;
   return (
+    
     <div>
       <CardDetail
         key={dogs.id}
         id={dogs.id}
-        image={dogs.image}
+        image={dogs.image !== "" ? dogs.image : defaultImg}
         name={dogs.name}
         height={dogs.height}
         weight={dogs.weight}

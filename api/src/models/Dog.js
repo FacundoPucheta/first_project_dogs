@@ -14,7 +14,6 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd1Oh9OUPERvce6FKON_y-naI8RzF9WJXGYw&usqp=CAU",
       },
       name: {
         type: DataTypes.STRING,
@@ -31,6 +30,7 @@ module.exports = (sequelize) => {
       life_span: {
         type: DataTypes.STRING,
         allowNull: false,
+        defaultValue: "1 - 5 years"
       },
       belongToDb: {
         type: DataTypes.BOOLEAN,
