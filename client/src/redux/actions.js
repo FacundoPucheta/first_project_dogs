@@ -21,9 +21,9 @@ export const getDogById = (id) => {
 
 export const createDog = ({image, name, weight, height, life_span, temperament}) => {
   return async (dispatch) => {
-    const allDogs = await axios.post(`${REQ_DOGS}`, ({image, name, weight, height, life_span, temperament}));
-    const newDog = allDogs.data;
-    dispatch({ type: CREATE_DOG, payload: newDog });
+    await axios.post(`${REQ_DOGS}`, ({image, name, weight, height, life_span, temperament}));
+    // const newDog = allDogs.data;
+    dispatch({ type: CREATE_DOG });
   };
 };
 

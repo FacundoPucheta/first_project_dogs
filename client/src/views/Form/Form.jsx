@@ -5,9 +5,14 @@ import { createDog, getAllTemper } from "../../redux/actions";
 
 const Form = () => {
 
+//crear nuevo estado para: ERRORES, IMAGEN EN VIVO, MOSTRAR LAS COSAS SELECCIONADAS
+
   const dispatch = useDispatch();
 
   const temperaments  = useSelector((state) => state.temperaments);
+  const orderedTempers = [...temperaments].sort((a, b) => (a.name > b.name ? 1 : -1));
+
+  const [dogCreated, setDogCreated] = useState("");
 
   const [newBreed, setNewBreed] = useState({
     name: "",
@@ -30,17 +35,23 @@ const Form = () => {
       life_span: `${newBreed.minLifespan} - ${newBreed.maxLifespan} years`,
   
     };
-
-    dispatch(createDog(newBreedCreated));
+    
+    dispatch(createDog(newBreedCreated))
+    .then(() => {
+      setDogCreated("Dog breed created successfully!");
+    })
+    .catch(() => {
+      setDogCreated("Error creating dog breed!");
+    });
   };
 
   const handleChange = (event) => {
+    
     setNewBreed({
       ...newBreed,
       [event.target.name]: event.target.value
     });
   };
-  
   
   
 
@@ -53,6 +64,10 @@ const Form = () => {
     });
   };
 
+  const addTemperHandler = () => {
+
+  };
+
   useEffect(() => {
     dispatch(getAllTemper());
   }, [dispatch]);
@@ -60,6 +75,8 @@ const Form = () => {
 
   return (
     <>
+    {dogCreated === "Dog breed created successfully!" ? <p style={{ color: "green"}}>{dogCreated}</p> : <p style={{ color: "red" }}>{dogCreated}</p> }
+    
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name: </label>
@@ -95,16 +112,17 @@ const Form = () => {
         <div>
           <label>Temperament:  </label>
           <select
-            multiple
+            size={1}
             value={newBreed.temperament}
             onChange={handleSelectChange}
           >
-            {temperaments?.map((temp) => {
+            {orderedTempers?.map((temp) => {
               return <option key={temp.id} value={temp.name}>
               {temp.name}
             </option>;
             })}
           </select>
+          <button onClick={addTemperHandler}>✔️</button>
         </div>
         <button onClick={handleSubmit}>Create!</button>
       </form>

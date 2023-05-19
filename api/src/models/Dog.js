@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "https://es.digitaltrends.com/wp-content/uploads/2022/10/braydon-anderson-wOHH-NUTvVc-unsplash.jpg?p=1",
+        defaultValue: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd1Oh9OUPERvce6FKON_y-naI8RzF9WJXGYw&usqp=CAU",
       },
       name: {
         type: DataTypes.STRING,

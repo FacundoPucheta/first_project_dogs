@@ -10,8 +10,8 @@ const Home = () => {
   const {dogs} = useSelector((state) => state.dogs);
 
   useEffect(()=> {
-    !dogs && dispatch(getAllDogs());
-  },[dispatch, dogs])
+    dispatch(getAllDogs());
+  },[dispatch])
 
 
 
