@@ -2,15 +2,19 @@ import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createDog, getAllTemper } from "../../redux/actions";
+import style from "./Form.module.css";
 
 const Form = () => {
 
 //crear nuevo estado para: ERRORES, IMAGEN EN VIVO, MOSTRAR LAS COSAS SELECCIONADAS
+//traerlos ordenados alfabeticamente desde el back!
+// const orderedTempers = [...temperaments].sort((a, b) => (a.name > b.name ? 1 : -1));
+//solo permitir que se agreguen 5 temperamentos o 3!
+//validar que si ya se encuentran repetidos, no los agrue! Validar esto
 
   const dispatch = useDispatch();
 
   const temperaments  = useSelector((state) => state.temperaments);
-  // const orderedTempers = [...temperaments].sort((a, b) => (a.name > b.name ? 1 : -1));
 
   const [dogCreated, setDogCreated] = useState("");
   const [selectScreen, setSelectScreen] = useState([]);
@@ -133,7 +137,7 @@ const Form = () => {
             })}
           </select>
           <br></br>
-          <div>
+          <div className={style.selectedOption}>
             {selectScreen.map((option) => (
             <div key={option}>
               <p>{option}</p>

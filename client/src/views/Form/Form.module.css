@@ -1,0 +1,26 @@
+.selectedOption {
+    display: flex;
+    flex-direction: row;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin: 5px;
+    width: fit-content;
+    max-width: var(--half-width);
+    overflow: auto;
+  }
+  
+  .selectedOption button {
+    background: none;
+    border: dashed black 0.1rem;
+    font-size: 12px;
+    padding: 2px 5px;
+    margin-left: 5px;
+    cursor: pointer ;
+    white-space: nowrap;
+  }
+
+  :root {
+    --half-width: 50vw;
+}
