@@ -4,15 +4,15 @@ import { getAllDogs } from "../../redux/actions";
 import DogsContainer from "../../components/DogsContainer/DogsContainer";
 
 const DOGS_RENDER = 8;
-
+//AGREGAR AL PAGINADO __> TO THE LAST __> TO THE START
 const Home = () => {
   const dispatch = useDispatch();
+  let { dogs } = useSelector((state) => state.dogs);
 
   useEffect(() => {
     dispatch(getAllDogs());
   }, [dispatch]);
   
-  let { dogs } = useSelector((state) => state.dogs);
   
   useEffect(() => {
     if (Array.isArray(dogs) || dogs.length > 0) setBreeds([...dogs]?.splice(0, DOGS_RENDER));
@@ -20,8 +20,8 @@ const Home = () => {
   
   if (!Array.isArray(dogs)) dogs = [];
   
-  
-  const [breeds, setBreeds] = useState([...dogs]?.splice(0, DOGS_RENDER));
+  const [breeds, setBreeds] = useState([]);
+  // [...dogs]?.splice(0, DOGS_RENDER)
   const [currentPage, setCurrentPage] = useState(0);
 
   const prevHandler = () => {

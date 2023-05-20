@@ -1,6 +1,7 @@
 import NavBar from "./components/NavBar/NavBar";
 import {Landing, Home, Detail, Form } from "./views"
 import { Route, Routes, useLocation } from "react-router-dom";
+import "./App.css";
 
 
 

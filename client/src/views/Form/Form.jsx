@@ -7,17 +7,15 @@ import style from "./Form.module.css";
 const Form = () => {
 
 //crear nuevo estado para: ERRORES, IMAGEN EN VIVO, MOSTRAR LAS COSAS SELECCIONADAS
-//traerlos ordenados alfabeticamente desde el back!
-// const orderedTempers = [...temperaments].sort((a, b) => (a.name > b.name ? 1 : -1));
 //solo permitir que se agreguen 5 temperamentos o 3!
-//validar que si ya se encuentran repetidos, no los agrue! Validar esto
+
 
   const dispatch = useDispatch();
 
   const temperaments  = useSelector((state) => state.temperaments);
 
   const [dogCreated, setDogCreated] = useState("");
-  const [selectScreen, setSelectScreen] = useState([]);
+  
 
   const [newBreed, setNewBreed] = useState({
     name: "",
@@ -59,16 +57,20 @@ const Form = () => {
   };
   
   
-
+  const [selectScreen, setSelectScreen] = useState([]);
   const handleSelectChange = (event) => {
-    const optionSelected = Array.from(event.target.selectedOptions).map(option => option.value);
-
-
+    const arrOptionSelected = Array.from(event.target.selectedOptions);
+    const optionSelected = arrOptionSelected.map(option => option.value);
+    
+    console.log(optionSelected)
+    if(optionSelected.every(option => !selectScreen.includes(option))){
     setSelectScreen([...selectScreen, ...optionSelected]);
     setNewBreed({
       ...newBreed,
       temperament: [...newBreed.temperament, ...selectScreen]
-    })  
+    })
+  }
+
   };
   
   const handleUpdateOp = (option) => {
