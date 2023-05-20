@@ -8,20 +8,22 @@ const DogsContainer = (props) => {
 
   return (
     <div>
-      <div>
-        <h1>Pagina {props.currentPage}</h1>
-        <button onClick={props.prevHandler}>Prev </button>
-        <button onClick={props.nextHandler}>Next </button>
-      </div>
+            <div>
+              <h3>Pagina {props.currentPage + 1}</h3>
+              <button onClick={props.firstPHandler}>First </button>
+              <button onClick={props.prevHandler}>Prev </button>
+              <button onClick={props.nextHandler}>Next </button>
+              <button onClick={props.lastPHandler}>Last  </button>
+            </div>
       <div className={style.container}>
         {props.breeds.map((dog) => {
           return (
             <DogCard
-              key={dog.id}
-              id={dog.id}
-              image={dog.image !== "" ? dog.image : defaultImg}
-              name={dog.name}
-              weight={dog.weight}
+            key={dog.id}
+            id={dog.id}
+            image={dog.image !== "" ? dog.image : defaultImg}
+            name={dog.name}
+            weight={dog.weight}
               temperament={dog.temperament}
             />
           );

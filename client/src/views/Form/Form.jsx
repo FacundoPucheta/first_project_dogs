@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { createDog, getAllTemper } from "../../redux/actions";
 import style from "./Form.module.css";
+import validateForm from "../../validations/validation";
 
 const Form = () => {
 
@@ -10,11 +11,14 @@ const Form = () => {
 //solo permitir que se agreguen 5 temperamentos o 3!
 
 
-  const dispatch = useDispatch();
+const temperaments  = useSelector((state) => state.temperaments);
 
-  const temperaments  = useSelector((state) => state.temperaments);
+const dispatch = useDispatch();
 
   const [dogCreated, setDogCreated] = useState("");
+  const [selectScreen, setSelectScreen] = useState([]);
+  const [errors, setErrors] = useState({errors: true});
+
   
 
   const [newBreed, setNewBreed] = useState({
@@ -31,7 +35,10 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
+    setNewBreed({
+      ...newBreed,
+      temperament: [...newBreed.temperament, ...selectScreen]
+    })
     const newBreedCreated = {
       ...newBreed,
       height: `${newBreed.minHeight} - ${newBreed.maxHeight}`,
@@ -54,22 +61,27 @@ const Form = () => {
       ...newBreed,
       [event.target.name]: event.target.value
     });
+    
+
+    setErrors(validateForm({
+      ...newBreed,
+      [event.target.name]: event.target.value
+    }));
   };
   
   
-  const [selectScreen, setSelectScreen] = useState([]);
-  const handleSelectChange = (event) => {
+  
+  const handleSelectChange =  (event) => {
     const arrOptionSelected = Array.from(event.target.selectedOptions);
     const optionSelected = arrOptionSelected.map(option => option.value);
     
-    console.log(optionSelected)
     if(optionSelected.every(option => !selectScreen.includes(option))){
-    setSelectScreen([...selectScreen, ...optionSelected]);
-    setNewBreed({
-      ...newBreed,
-      temperament: [...newBreed.temperament, ...selectScreen]
-    })
-  }
+      setSelectScreen([...selectScreen, ...optionSelected])
+      
+       
+    }
+    
+    console.log(newBreed)
 
   };
   
@@ -97,50 +109,43 @@ const Form = () => {
         <div>
           <label>Name: </label>
           <input type="text" name="name" value={newBreed.name} onChange={handleChange}/>
+          {errors?.name && <p>{errors.name}</p>}
         </div>
         <div>
-          <label>Image URL: 
+          <label>Image URL: </label>
           <input type="text" name="image" value={newBreed.image} onChange={handleChange}/>
-          </label>
+          
         </div>
         <div>
           <label>Height: 
           min <input type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
           max <input type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
-
+          {errors?.height && <p>{errors.height}</p>}
           </label>
         </div>
         <div>
           <label>Weight: 
           min <input type="text" name="minWeight" value={newBreed.minWeight} onChange={handleChange}/> -
           max <input type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
-
+          {errors?.weight && <p>{errors.weight}</p>}
           </label>
         </div>
         <div>
           <label>Lifespan: 
-            <br></br>
             min <input type="text" name="minLifespan" value={newBreed.minLifespan} onChange={handleChange}/> -
             max <input type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
-          
+            {errors?.life_span && <p>{errors.life_span}</p>}
           </label>
         </div>
         <div>
           <label>Temperament:  </label>
-          <select
-            multiple
-            name="temper"
-            onChange={handleSelectChange}
-          >
+          <select multiple name="temper" value={handleChange.optionSelected} onChange={handleSelectChange} >
             {temperaments?.map((temp) => {
-              return <option key={temp.id} value={temp.name} name={temp.name}>
-              {temp.name}
-            </option>;
+              return <option key={temp.id} value={temp.name} name={temp.name}>{temp.name}</option>;
             })}
           </select>
           <br></br>
-          <div className={style.selectedOption}>
-            {selectScreen.map((option) => (
+          <div className={style.selectedOption}>{selectScreen.map((option) => (
             <div key={option}>
               <p>{option}</p>
               <button onClick={() => handleUpdateOp(option)}>❌</button>
@@ -149,7 +154,8 @@ const Form = () => {
           ))}</div>
           
         </div>
-        <button onClick={handleSubmit}>Create! ✔️</button>
+        <button onClick={handleSubmit} disabled={Object.keys(errors).length > 0}>Create! ✔️</button> 
+        
       </form>
 
       <NavLink to="/home" style={{ color: "salmon" }}>
