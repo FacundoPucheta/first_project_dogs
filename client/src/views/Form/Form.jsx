@@ -29,14 +29,14 @@ const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
     const newBreedCreated = {
       ...newBreed,
       height: `${newBreed.minHeight} - ${newBreed.maxHeight}`,
       weight: `${newBreed.minWeight} - ${newBreed.maxWeight}`,
       life_span: `${newBreed.minLifespan} - ${newBreed.maxLifespan} years`,
-      
     };
-    
+    console.log(newBreedCreated)
     dispatch(createDog(newBreedCreated))
     .then(() => {
       setDogCreated("Dog breed created successfully!");
@@ -57,21 +57,26 @@ const Form = () => {
   
 
   const handleSelectChange = (event) => {
-    const optionsSelected = event.target.value;
+    const optionSelected = Array.from(event.target.selectedOptions).map(option => option.value);
 
-    setSelectScreen([
-      ...selectScreen, optionsSelected
 
-    ]);
-    
-  };
-  const addTemperHandler = (event) => {
-    event.preventDefault();
+    setSelectScreen([...selectScreen, ...optionSelected]);
     setNewBreed({
       ...newBreed,
-      temperament:[...newBreed.temperament ,...selectScreen]
-    });
+      temperament: [...newBreed.temperament, ...selectScreen]
+    })  
   };
+  
+  const handleUpdateOp = (option) => {
+    
+    const updatedOption = selectScreen.filter(temper => temper !== option);
+    setSelectScreen(updatedOption);
+    setNewBreed({
+      ...newBreed,
+      temperament: [...updatedOption]
+    });
+    
+  }
 
   useEffect(() => {
     dispatch(getAllTemper());
@@ -117,8 +122,8 @@ const Form = () => {
         <div>
           <label>Temperament:  </label>
           <select
+            multiple
             name="temper"
-            value={{selectScreen}}
             onChange={handleSelectChange}
           >
             {temperaments?.map((temp) => {
@@ -128,10 +133,17 @@ const Form = () => {
             })}
           </select>
           <br></br>
-          <div>{selectScreen}</div>
-          <button onClick={addTemperHandler}>✔️</button>
+          <div>
+            {selectScreen.map((option) => (
+            <div key={option}>
+              <p>{option}</p>
+              <button onClick={() => handleUpdateOp(option)}>❌</button>
+            </div>
+            
+          ))}</div>
+          
         </div>
-        <button onClick={handleSubmit}>Create!</button>
+        <button onClick={handleSubmit}>Create! ✔️</button>
       </form>
 
       <NavLink to="/home" style={{ color: "salmon" }}>
