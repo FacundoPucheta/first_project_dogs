@@ -78,7 +78,11 @@ const dispatch = useDispatch();
     if(optionSelected.every(option => !selectScreen.includes(option))){
       setSelectScreen([...selectScreen, ...optionSelected])
       
-       
+      setNewBreed({
+        ...newBreed,
+        temperament: [...newBreed.temperament, ...optionSelected]
+      })
+
     }
     
     console.log(newBreed)

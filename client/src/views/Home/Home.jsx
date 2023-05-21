@@ -22,7 +22,7 @@ const Home = () => {
   
   const [breeds, setBreeds] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  // [...dogs]?.splice(0, DOGS_TO_RENDER)
+  
   
   const firstPHandler = () => {
     if (currentPage === 0) return;
