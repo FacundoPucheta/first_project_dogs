@@ -1,6 +1,7 @@
 import DogCard from "../DogCard/DogCard";
 import style from "./DogsContainer.module.css";
 
+
 const DogsContainer = (props) => {
   const defaultImg =
     "https://img.ecartelera.com/noticias/fotos/24800/24860/5.jpg";
@@ -24,7 +25,7 @@ const DogsContainer = (props) => {
             image={dog.image !== "" ? dog.image : defaultImg}
             name={dog.name}
             weight={dog.weight}
-              temperament={dog.temperament}
+            temperament={dog.temperament}
             />
           );
         })}

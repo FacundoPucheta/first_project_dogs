@@ -19,8 +19,6 @@ const dispatch = useDispatch();
   const [selectScreen, setSelectScreen] = useState([]);
   const [errors, setErrors] = useState({errors: true});
 
-  
-
   const [newBreed, setNewBreed] = useState({
     name: "",
     image:"",
@@ -33,22 +31,35 @@ const dispatch = useDispatch();
     temperament: [],
   });
 
+  const resetForm = () => {
+    setNewBreed({
+      name: "",
+      image:"",
+      minHeight: "",
+      maxHeight: "",
+      minWeight: "",
+      maxWeight: "",
+      minLifespan: "",
+      maxLifespan: "",
+      temperament: [],
+    });
+    setSelectScreen([]);
+    setErrors({errors: true});
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    setNewBreed({
-      ...newBreed,
-      temperament: [...newBreed.temperament, ...selectScreen]
-    })
     const newBreedCreated = {
       ...newBreed,
       height: `${newBreed.minHeight} - ${newBreed.maxHeight}`,
       weight: `${newBreed.minWeight} - ${newBreed.maxWeight}`,
       life_span: `${newBreed.minLifespan} - ${newBreed.maxLifespan} years`,
     };
-    console.log(newBreedCreated)
+
     dispatch(createDog(newBreedCreated))
     .then(() => {
       setDogCreated("Dog breed created successfully!");
+      resetForm();
     })
     .catch(() => {
       setDogCreated("Error creating dog breed!");
@@ -56,7 +67,7 @@ const dispatch = useDispatch();
   };
 
   const handleChange = (event) => {
-    
+    setDogCreated("");
     setNewBreed({
       ...newBreed,
       [event.target.name]: event.target.value
@@ -67,11 +78,13 @@ const dispatch = useDispatch();
       ...newBreed,
       [event.target.name]: event.target.value
     }));
+    console.log(errors)
   };
   
   
   
   const handleSelectChange =  (event) => {
+    setDogCreated("");
     const arrOptionSelected = Array.from(event.target.selectedOptions);
     const optionSelected = arrOptionSelected.map(option => option.value);
     
@@ -85,7 +98,7 @@ const dispatch = useDispatch();
 
     }
     
-    console.log(newBreed)
+    // console.log(newBreed)
 
   };
   
@@ -113,7 +126,7 @@ const dispatch = useDispatch();
         <div>
           <label>Name: </label>
           <input type="text" name="name" value={newBreed.name} onChange={handleChange}/>
-          {errors?.name && <p>{errors.name}</p>}
+          {errors?.name && <span>{errors.name}</span>}
         </div>
         <div>
           <label>Image URL: </label>
@@ -124,21 +137,21 @@ const dispatch = useDispatch();
           <label>Height: 
           min <input type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
           max <input type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
-          {errors?.height && <p>{errors.height}</p>}
+          {errors?.height && <span>{errors.height}</span>}
           </label>
         </div>
         <div>
           <label>Weight: 
           min <input type="text" name="minWeight" value={newBreed.minWeight} onChange={handleChange}/> -
           max <input type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
-          {errors?.weight && <p>{errors.weight}</p>}
+          {errors?.weight && <span>{errors.weight}</span>}
           </label>
         </div>
         <div>
           <label>Lifespan: 
             min <input type="text" name="minLifespan" value={newBreed.minLifespan} onChange={handleChange}/> -
             max <input type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
-            {errors?.life_span && <p>{errors.life_span}</p>}
+            {errors?.life_span && <span>{errors.life_span}</span>}
           </label>
         </div>
         <div>
@@ -148,13 +161,11 @@ const dispatch = useDispatch();
               return <option key={temp.id} value={temp.name} name={temp.name}>{temp.name}</option>;
             })}
           </select>
-          <br></br>
           <div className={style.selectedOption}>{selectScreen.map((option) => (
             <div key={option}>
               <p>{option}</p>
               <button onClick={() => handleUpdateOp(option)}>❌</button>
             </div>
-            
           ))}</div>
           
         </div>

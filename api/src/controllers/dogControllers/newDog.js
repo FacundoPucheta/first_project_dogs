@@ -9,7 +9,7 @@ const postNewDog = async ({
   temperament,
 }) => {
   //temp sea un array
-
+  console.log(temperament)
   const newDog = await Dog.create({
     image,
     name,
