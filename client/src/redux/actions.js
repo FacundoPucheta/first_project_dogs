@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_DOGS, GET_ID_DOG, RESET_DOG, CREATE_DOG, GET_TEMPER } from "./action-types";
+import { GET_ALL_DOGS, GET_ID_DOG,  GET_NAME_DOG, RESET_DOG, CREATE_DOG, GET_TEMPER, NEXT_PAGE, PREV_PAGE, FIRST_PAGE, LAST_PAGE } from "./action-types";
 const REQ_DOGS = "http://localhost:3001/dogs";
 const REQ_TEMPER = "http://localhost:3001/temperaments";
 
@@ -19,10 +19,17 @@ export const getDogById = (id) => {
   };
 };
 
+export const getDogByName = (name) => {
+  return async (dispatch) => {
+    const nameDog = await axios.get(`${REQ_DOGS}?name=${name}`);
+    const dog = nameDog.data;
+    dispatch({ type: GET_NAME_DOG, payload: dog });
+  };
+};
+
 export const createDog = ({image, name, weight, height, life_span, temperament}) => {
   return async (dispatch) => {
     await axios.post(`${REQ_DOGS}`, ({image, name, weight, height, life_span, temperament}));
-    // const newDog = allDogs.data;
     dispatch({ type: CREATE_DOG });
   };
 };
@@ -33,6 +40,28 @@ export const getAllTemper = () => {
     const temper = allTemper.data;
     const orderedTempers = [...temper].sort((a, b) => (a.name > b.name ? 1 : -1));
     dispatch({ type: GET_TEMPER, payload: orderedTempers });
+  };
+};
+
+export const prevPage = () => {
+  return (dispatch) => {
+    dispatch({ type: PREV_PAGE });
+  };
+};
+
+export const nextPage = () => {
+  return (dispatch) => {
+    dispatch({ type: NEXT_PAGE });
+  };
+};
+export const toFirstPage = () => {
+  return (dispatch) => {
+    dispatch({ type: FIRST_PAGE });
+  };
+};
+export const toLastPage = (lastPage) => {
+  return (dispatch) => {
+    dispatch({ type: LAST_PAGE, payload: lastPage });
   };
 };
 

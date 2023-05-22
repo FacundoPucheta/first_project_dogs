@@ -1,0 +1,22 @@
+.page{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+.page span {
+    color: rgba(185, 111, 0, 0.767);
+    font-weight: bold;
+    text-shadow: 1px 2px 1px rgb(228, 185, 128);
+    -webkit-text-stroke: 0.7px black;
+    
+}
+
+.page p, h2 {
+    background-color: rgb(216, 165, 99);
+    border-radius: 4px;
+    margin: 4px;
+    padding: 4px;
+}
