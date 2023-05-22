@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_DOGS, GET_ID_DOG,  GET_NAME_DOG, RESET_DOG, CREATE_DOG, GET_TEMPER, NEXT_PAGE, PREV_PAGE, FIRST_PAGE, LAST_PAGE } from "./action-types";
+import { GET_ALL_DOGS, GET_ID_DOG,  GET_NAME_DOG, RESET_DOG, CREATE_DOG, GET_TEMPER, NEXT_PAGE, PREV_PAGE, FIRST_PAGE, LAST_PAGE, FILTER_TEMPER, FILTER_SOURCE, ORDER_NAME, ORDER_WEIGHT } from "./action-types";
 const REQ_DOGS = "http://localhost:3001/dogs";
 const REQ_TEMPER = "http://localhost:3001/temperaments";
 
@@ -70,6 +70,26 @@ export const toLastPage = (lastPage) => {
   };
 };
 
+export const filterTemper = (temper) => {
+  return (dispatch) => {
+    dispatch({ type: FILTER_TEMPER, payload: temper });
+  };
+};
+export const filterSource = (source) => {
+  return (dispatch) => {
+    dispatch({ type: FILTER_SOURCE, payload: source });
+  };
+};
+export const orderName = (order) => {
+  return (dispatch) => {
+    dispatch({ type: ORDER_NAME, payload: order });
+  };
+};
+export const orderWeight = (weight) => {
+  return (dispatch) => {
+    dispatch({ type: ORDER_WEIGHT, payload: weight });
+  };
+};
 export const resetDog = () => {
   return (dispatch) => {
     dispatch({ type: RESET_DOG });

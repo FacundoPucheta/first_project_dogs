@@ -4,6 +4,7 @@ import Paginate from "../Paginate/Paginate";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
+
 const defaultImg =
   "https://img.ecartelera.com/noticias/fotos/24800/24860/5.jpg";
 
@@ -21,15 +22,16 @@ const DogsContainer = () => {
   
   useEffect(() => {
     setCopyDogs(dogs);
-  }, [dogs]);
+  }, [dogs, numPage]);
   
   let viewDogs = copyDogs?.slice(firstIndex, lastIndex );
-  console.log(copyDogs);
+  
   
   if(!Array.isArray(viewDogs)) return <span>{copyDogs}</span>
   
-    return viewDogs?.length > 0 ? (
+    return (viewDogs && viewDogs?.length > 0) ? (
       <div>
+        
         <Paginate cantPages={cantPages} />
 
         <div className={style.container}>

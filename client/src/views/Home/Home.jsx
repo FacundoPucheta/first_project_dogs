@@ -1,10 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getAllDogs } from "../../redux/actions";
+import { getAllDogs, getAllTemper } from "../../redux/actions";
 import DogsContainer from "../../components/DogsContainer/DogsContainer";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import Filters from "../../components/Filters/Filters";
 
-//AGREGAR AL PAGINADO __> TO THE LAST __> TO THE START
+
+
 const Home = () => {
   const dispatch = useDispatch();
   
@@ -12,6 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllDogs());
+    dispatch(getAllTemper());
   }, [dispatch]);
 
   const handleClick = (event) => {
@@ -19,10 +22,11 @@ const Home = () => {
     dispatch(getAllDogs());
   };
 
-// if (!Array.isArray(dogs)) dogs = [];
+
   return (
   
     <div>
+      <Filters />
       <h1>Esta es la vista de Home</h1>
       <SearchBar />
       <button onClick={handleClick}>Get All :) </button>
