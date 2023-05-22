@@ -7,7 +7,7 @@ export const getAllDogs = () => {
   return async (dispatch) => {
     const allDogs = await axios.get(`${REQ_DOGS}`);
     const dogs = allDogs.data;
-    dispatch({ type: GET_ALL_DOGS, payload: { dogs } });
+    dispatch({ type: GET_ALL_DOGS, payload: dogs  });
   };
 };
 
@@ -21,9 +21,14 @@ export const getDogById = (id) => {
 
 export const getDogByName = (name) => {
   return async (dispatch) => {
-    const nameDog = await axios.get(`${REQ_DOGS}?name=${name}`);
-    const dog = nameDog.data;
-    dispatch({ type: GET_NAME_DOG, payload: dog });
+    try {
+      const nameDog = await axios.get(`${REQ_DOGS}?name=${name}`);
+      const dog = nameDog.data;
+      dispatch({ type: GET_NAME_DOG, payload: dog });
+      
+    } catch (error) {
+      dispatch({type: GET_NAME_DOG, payload: "Dog not found.."})
+    }
   };
 };
 

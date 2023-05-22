@@ -21,9 +21,11 @@ const reducer = (state = initialState, { type, payload }) => {
       };
 
     case GET_NAME_DOG:
+      
       return {
         ...state,
         dogs: payload,
+        numPage: 1
       };
 
       case CREATE_DOG:
