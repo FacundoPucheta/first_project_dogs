@@ -1,5 +1,23 @@
+import {
+  GET_ALL_DOGS,
+  BACK_HOME,
+  GET_ID_DOG,
+  GET_NAME_DOG,
+  RESET_DOG,
+  CREATE_DOG,
+  GET_TEMPER,
+  NEXT_PAGE,
+  PREV_PAGE,
+  FIRST_PAGE,
+  LAST_PAGE,
+  FILTER_TEMPER,
+  FILTER_SOURCE,
+  ORDER_NAME,
+  ORDER_WEIGHT,
+  SET_ERROR,
+} from "./action-types";
 import axios from "axios";
-import { GET_ALL_DOGS, BACK_HOME, GET_ID_DOG,  GET_NAME_DOG, RESET_DOG, CREATE_DOG, GET_TEMPER, NEXT_PAGE, PREV_PAGE, FIRST_PAGE, LAST_PAGE, FILTER_TEMPER, FILTER_SOURCE, ORDER_NAME, ORDER_WEIGHT } from "./action-types";
+
 const REQ_DOGS = "http://localhost:3001/dogs";
 const REQ_TEMPER = "http://localhost:3001/temperaments";
 
@@ -7,7 +25,7 @@ export const getAllDogs = () => {
   return async (dispatch) => {
     const allDogs = await axios.get(`${REQ_DOGS}`);
     const dogs = allDogs.data;
-    dispatch({ type: GET_ALL_DOGS, payload: dogs  });
+    dispatch({ type: GET_ALL_DOGS, payload: dogs });
   };
 };
 
@@ -25,16 +43,29 @@ export const getDogByName = (name) => {
       const nameDog = await axios.get(`${REQ_DOGS}?name=${name}`);
       const dog = nameDog.data;
       dispatch({ type: GET_NAME_DOG, payload: dog });
-      
     } catch (error) {
-      dispatch({type: GET_NAME_DOG, payload: "Dog not found.."})
+      dispatch({ type: SET_ERROR, payload: "Dog not found.." });
     }
   };
 };
 
-export const createDog = ({image, name, weight, height, life_span, temperament}) => {
+export const createDog = ({
+  image,
+  name,
+  weight,
+  height,
+  life_span,
+  temperament,
+}) => {
   return async (dispatch) => {
-    await axios.post(`${REQ_DOGS}`, ({image, name, weight, height, life_span, temperament}));
+    await axios.post(`${REQ_DOGS}`, {
+      image,
+      name,
+      weight,
+      height,
+      life_span,
+      temperament,
+    });
     dispatch({ type: CREATE_DOG });
   };
 };
@@ -43,7 +74,9 @@ export const getAllTemper = () => {
   return async (dispatch) => {
     const allTemper = await axios.get(`${REQ_TEMPER}/`);
     const temper = allTemper.data;
-    const orderedTempers = [...temper].sort((a, b) => (a.name > b.name ? 1 : -1));
+    const orderedTempers = [...temper].sort((a, b) =>
+      a.name > b.name ? 1 : -1
+    );
     dispatch({ type: GET_TEMPER, payload: orderedTempers });
   };
 };
@@ -94,6 +127,12 @@ export const orderWeight = (weight) => {
 export const resetDog = () => {
   return (dispatch) => {
     dispatch({ type: RESET_DOG });
+  };
+};
+
+export const cleanError = () => {
+  return (dispatch) => {
+    dispatch({ type: SET_ERROR, payload: "" });
   };
 };
 

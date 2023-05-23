@@ -1,16 +1,15 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { getAllDogs, getAllTemper } from "../../redux/actions";
 import DogsContainer from "../../components/DogsContainer/DogsContainer";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Filters from "../../components/Filters/Filters";
 
-
-
 const Home = () => {
-  const dispatch = useDispatch();
-  
 
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllDogs());
@@ -22,16 +21,21 @@ const Home = () => {
     dispatch(getAllDogs());
   };
 
-
   return (
-  
+
     <div>
-      <Filters />
       <h1>Esta es la vista de Home</h1>
+      <Filters />
+      <button onClick={() => navigate("/create")} style={{ color: "red" }}>CREATE!</button>
+
+      <div>
       <SearchBar />
       <button onClick={handleClick}>Get All :) </button>
+      </div>
+      
       <DogsContainer />
     </div>
+    
   );
 };
 

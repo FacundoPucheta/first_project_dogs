@@ -1,24 +1,26 @@
-import style from "./DogsContainer.module.css";
-import DogCard from "../DogCard/DogCard";
-import Paginate from "../Paginate/Paginate";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { cleanError } from "../../redux/actions";
+import Paginate from "../Paginate/Paginate";
+import DogCard from "../DogCard/DogCard";
+import style from "./DogsContainer.module.css";
 
-const errorImage =
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSnkcW5ezogdx5ztSElyK3hLPlqFUqkMzthMLL33ehArDpO9X3U2yK5NReuFb4Wnhq9aQ&usqp=CAU";
+// const errorImage =
+//   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSnkcW5ezogdx5ztSElyK3hLPlqFUqkMzthMLL33ehArDpO9X3U2yK5NReuFb4Wnhq9aQ&usqp=CAU";
 const defaultImg =
   "https://img.ecartelera.com/noticias/fotos/24800/24860/5.jpg";
+
 
 const DogsContainer = () => {
 
   const DOGS_TO_RENDER = 8;
   
-  const { dogs } = useSelector((state) => state);
-  const { numPage } = useSelector((state) => state);
-
+  const { dogs, numPage, error } = useSelector((state) => state);
+  const dispatch = useDispatch();
+  
   const [copyDogs, setCopyDogs] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  
   let firstIndex = (numPage - 1) * DOGS_TO_RENDER;
   let lastIndex = numPage * DOGS_TO_RENDER;
   let cantPages = Math.ceil(dogs?.length / 8);
@@ -29,17 +31,16 @@ const DogsContainer = () => {
       setCopyDogs(dogs);
     }
 
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, [dogs, numPage]);
+    dispatch(cleanError());
+  }, [dogs, numPage, dispatch]);
 
-  if (!Array.isArray(viewDogs)) return <span>{copyDogs}</span>;
+  if (error.length > 0) return <div>{error}</div>;
 
-  return viewDogs && viewDogs?.length > 0 ? (
+  return viewDogs && viewDogs?.length > 0 
+  ? (
+
     <div>
       <Paginate cantPages={cantPages} />
-
       <div className={style.container}>
         {viewDogs?.map((dog) => (
           <DogCard
@@ -53,18 +54,18 @@ const DogsContainer = () => {
         ))}
       </div>
     </div>
-  ) : (
-    <>
-      {loading ? (
-        <div>Loading...</div>
-      ) : (
-        <>
-          <p> An error has ocurred ! -</p>
-          <img src={errorImage} alt="error" />
-        </>
-      )}
-    </>
+  )
+  : (
+
+    <div>
+      {loading ? (<div>Loading...</div>) 
+      : (setTimeout(() => {
+          setLoading(false);
+        }, 3000))
+        }
+    </div>
   );
+
 };
 
 export default DogsContainer;

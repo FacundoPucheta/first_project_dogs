@@ -1,27 +1,35 @@
+import { backHome, createDog, getAllTemper } from "../../redux/actions";
+import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { backHome, createDog, getAllTemper } from "../../redux/actions";
-import style from "./Form.module.css";
 import validateForm from "../../validations/validation";
+import style from "./Form.module.css";
 
 const Form = () => {
 
-//crear nuevo estado para: ERRORES, IMAGEN EN VIVO, MOSTRAR LAS COSAS SELECCIONADAS
-//solo permitir que se agreguen 5 temperamentos o 3!
-
-
-const temperaments  = useSelector((state) => state.temperaments);
-
+const temperaments = useSelector((state) => state.temperaments);
 const dispatch = useDispatch();
 
-  const [dogCreated, setDogCreated] = useState("");
-  const [selectScreen, setSelectScreen] = useState([]);
-  const [errors, setErrors] = useState({errors: true});
+const [creationState, setCreationState] = useState("");
+const [selectScreen, setSelectScreen] = useState([]);
+const [formValidate, setFormValidate] = useState({ formValidate: true });
 
-  const [newBreed, setNewBreed] = useState({
+const [newBreed, setNewBreed] = useState({
+  name: "",
+  image: "",
+  minHeight: "",
+  maxHeight: "",
+  minWeight: "",
+  maxWeight: "",
+  minLifespan: "",
+  maxLifespan: "",
+  temperament: [],
+});
+
+const resetForm = () => {
+  setNewBreed({
     name: "",
-    image:"",
+    image: "",
     minHeight: "",
     maxHeight: "",
     minWeight: "",
@@ -30,103 +38,89 @@ const dispatch = useDispatch();
     maxLifespan: "",
     temperament: [],
   });
+  setSelectScreen([]);
+  setFormValidate({ formValidate: true });
+};
 
-  const resetForm = () => {
-    setNewBreed({
-      name: "",
-      image:"",
-      minHeight: "",
-      maxHeight: "",
-      minWeight: "",
-      maxWeight: "",
-      minLifespan: "",
-      maxLifespan: "",
-      temperament: [],
-    });
-    setSelectScreen([]);
-    setErrors({errors: true});
+const handleBack = () => {
+  dispatch(backHome());
+};
+
+const handleSubmit = (event) => {
+  event.preventDefault();
+  const newBreedCreated = {
+    ...newBreed,
+    height: `${newBreed.minHeight} - ${newBreed.maxHeight}`,
+    weight: `${newBreed.minWeight} - ${newBreed.maxWeight}`,
+    life_span: `${newBreed.minLifespan} - ${newBreed.maxLifespan} years`,
   };
 
-  const handleBack = () => {
-    dispatch(backHome());
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const newBreedCreated = {
-      ...newBreed,
-      height: `${newBreed.minHeight} - ${newBreed.maxHeight}`,
-      weight: `${newBreed.minWeight} - ${newBreed.maxWeight}`,
-      life_span: `${newBreed.minLifespan} - ${newBreed.maxLifespan} years`,
-    };
-
-    dispatch(createDog(newBreedCreated))
+  dispatch(createDog(newBreedCreated))
     .then(() => {
-      setDogCreated("Dog breed created successfully!");
+      setCreationState("Dog breed created successfully!");
       resetForm();
     })
     .catch(() => {
-      setDogCreated("Error creating dog breed!");
+      setCreationState("Error creating dog breed!");
     });
-  };
+};
 
-  const handleChange = (event) => {
-    setDogCreated("");
+const handleChange = (event) => {
+  setCreationState("");
+
+  setNewBreed({
+    ...newBreed,
+    [event.target.name]: event.target.value,
+  });
+
+  setFormValidate(
+    validateForm({
+      ...newBreed,
+      [event.target.name]: event.target.value,
+    })
+  );
+
+};
+
+const handleSelectChange = (event) => {
+  setCreationState("");
+  
+  const arrOptionSelected = Array.from(event.target.selectedOptions);
+  const optionSelected = arrOptionSelected.map((option) => option.value);
+
+  if (optionSelected.every((option) => !selectScreen.includes(option))) {
+    setSelectScreen([...selectScreen, ...optionSelected]);
+
     setNewBreed({
       ...newBreed,
-      [event.target.name]: event.target.value
+      temperament: [...newBreed.temperament, ...optionSelected],
     });
-    
-
-    setErrors(validateForm({
-      ...newBreed,
-      [event.target.name]: event.target.value
-    }));
-    console.log(errors)
-  };
-  
-  
-  
-  const handleSelectChange =  (event) => {
-    setDogCreated("");
-    const arrOptionSelected = Array.from(event.target.selectedOptions);
-    const optionSelected = arrOptionSelected.map(option => option.value);
-    
-    if(optionSelected.every(option => !selectScreen.includes(option))){
-      setSelectScreen([...selectScreen, ...optionSelected])
-      
-      setNewBreed({
-        ...newBreed,
-        temperament: [...newBreed.temperament, ...optionSelected]
-      })
-    }
-  };
-  
-  const handleUpdateOp = (option) => {
-    
-    const updatedOption = selectScreen.filter(temper => temper !== option);
-    setSelectScreen(updatedOption);
-    setNewBreed({
-      ...newBreed,
-      temperament: [...updatedOption]
-    });
-    
   }
+};
 
-  useEffect(() => {
-    dispatch(getAllTemper());
-  }, [dispatch]);
+const handleUpdateOp = (option) => {
+  const updatedOption = selectScreen.filter((temper) => temper !== option);
+  setSelectScreen(updatedOption);
+  setNewBreed({
+    ...newBreed,
+    temperament: [...updatedOption],
+  });
+};
+
+useEffect(() => {
+  dispatch(getAllTemper());
+}, [dispatch]);
 
 
   return (
     <>
-    {dogCreated === "Dog breed created successfully!" ? <p style={{ color: "green"}}>{dogCreated}</p> : <p style={{ color: "red" }}>{dogCreated}</p> }
+    {creationState === "Dog breed created successfully!" ? <p style={{ color: "green"}}>{creationState}</p> : <p style={{ color: "red" }}>{creationState}</p> }
     
       <form onSubmit={handleSubmit}>
         <div>
           <label>Name: </label>
           <input type="text" name="name" value={newBreed.name} onChange={handleChange}/>
-          {errors?.name && <span>{errors.name}</span>}
+          {formValidate?.name && <span>{formValidate.name}</span>}
         </div>
         <div>
           <label>Image URL: </label>
@@ -137,22 +131,22 @@ const dispatch = useDispatch();
           <label>Height: 
           min <input type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
           max <input type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
-          {errors?.height && <span>{errors.height}</span>}
           </label>
+          {formValidate?.height && <span>{formValidate.height}</span>}
         </div>
         <div>
           <label>Weight: 
           min <input type="text" name="minWeight" value={newBreed.minWeight} onChange={handleChange}/> -
           max <input type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
-          {errors?.weight && <span>{errors.weight}</span>}
           </label>
+          {formValidate?.weight && <span>{formValidate.weight}</span>}
         </div>
         <div>
           <label>Lifespan: 
             min <input type="text" name="minLifespan" value={newBreed.minLifespan} onChange={handleChange}/> -
             max <input type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
-            {errors?.life_span && <span>{errors.life_span}</span>}
           </label>
+            {formValidate?.life_span && <span>{formValidate.life_span}</span>}
         </div>
         <div>
           <label>Temperament:  </label>
@@ -169,7 +163,7 @@ const dispatch = useDispatch();
           ))}</div>
           
         </div>
-        <button onClick={handleSubmit} disabled={(Object.keys(errors).length > 0 ) || (!selectScreen.length)}>Create! ✔️</button> 
+        <button onClick={handleSubmit} disabled={(Object.keys(formValidate).length > 0 ) || (!selectScreen.length)}>Create! ✔️</button> 
         
       </form>
 

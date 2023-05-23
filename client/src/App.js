@@ -1,28 +1,23 @@
 import NavBar from "./components/NavBar/NavBar";
-import {Landing, Home, Detail, Form } from "./views"
+import { Landing, Home, Detail, Form } from "./views";
 import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 
+function App() {
 
+  const location = useLocation().pathname;
 
-  function App() {
-
-    
-
-  const location = useLocation().pathname;  
-  
   return (
     <div className="App">
-
-      {(location !== "/" && location !== "create") && <NavBar />}
+      
+      {location !== "/" && location !== "create" && <NavBar />}
 
       <Routes>
-      <Route path="/" element={<Landing />} /> 
-      <Route path="/home" element={<Home />} /> 
-      <Route path="/detail/:id" element={<Detail />} /> 
-      <Route path="/create" element={<Form />} /> 
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/create" element={<Form />} />
       </Routes>
-
     </div>
   );
 }

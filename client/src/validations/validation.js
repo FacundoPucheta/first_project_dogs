@@ -1,4 +1,6 @@
+// Can be improved (add new ones or needed)
 const validateForm = (newBreed) => {
+
     const errors = {};
 
     if(newBreed.name.length === 0){
@@ -34,7 +36,6 @@ const validateForm = (newBreed) => {
     else if(!/^[0-9]+$/.test(newBreed.minLifespan) || !/^[0-9]+$/.test(newBreed.maxLifespan) ){
         errors.life_span = "Only numeric values allowed";
     }
-
 
     return errors;
   };
