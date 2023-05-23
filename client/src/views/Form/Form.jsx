@@ -99,11 +99,7 @@ const dispatch = useDispatch();
         ...newBreed,
         temperament: [...newBreed.temperament, ...optionSelected]
       })
-
     }
-    
-    // console.log(newBreed)
-
   };
   
   const handleUpdateOp = (option) => {
@@ -134,7 +130,7 @@ const dispatch = useDispatch();
         </div>
         <div>
           <label>Image URL: </label>
-          <input type="text" name="image" value={newBreed.image} onChange={handleChange}/>
+          <input type="text" placeholder=" - max of 2000 chars " name="image" value={newBreed.image} onChange={handleChange}/>
           
         </div>
         <div>

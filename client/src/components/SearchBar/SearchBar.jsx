@@ -21,7 +21,7 @@ const SearchBar = () => {
     return(
         <>
         <div>
-            <input onChange={handleSearch} value={name}/>
+            <input placeholder="Search by doggy name..." onChange={handleSearch} value={name}/>
             <button onClick={() => {onSearch(name)}}>Search</button>
         </div>
         </>

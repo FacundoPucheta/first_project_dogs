@@ -30,7 +30,6 @@ module.exports = (sequelize) => {
       life_span: {
         type: DataTypes.STRING,
         allowNull: false,
-        defaultValue: "10 - 13 years"
       },
       belongToDb: {
         type: DataTypes.BOOLEAN,

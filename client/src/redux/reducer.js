@@ -44,11 +44,11 @@ const reducer = (state = initialState, { type, payload }) => {
       };
 
     case FILTER_TEMPER:
-      const tempersCopy = [...state.temperaments];
-      const temperFilter = tempersCopy.filter( dog => dog.temperament === payload);
+      const dogsCopy = [...state.dogs]
+      const temperFilter = dogsCopy.filter(dog => dog.temperament?.toLowerCase().includes(payload));
       return {
         ...state,
-        temperaments: temperFilter,
+        dogs: temperFilter,
       };
 
     case FILTER_SOURCE:
@@ -58,6 +58,7 @@ const reducer = (state = initialState, { type, payload }) => {
         dogSource = state.dogs;
       }
       if(payload === "default") {
+
         dogSource = state.dogs.filter(dog => dog.belongToDb === false);
       }
       if(payload === "created") {
@@ -85,8 +86,8 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         dogs:
         payload === "A"
-        ? state.dogs.sort((a, b) => (a.weight > b.weight ? 1 : -1))
-        : state.dogs.sort((a, b) => (a.weight < b.weight ? 1 : -1))
+        ? state.dogs.sort((a, b) => (a.weight?.split("-")[0] - b.weight?.split("-")[0]))
+        : state.dogs.sort((a, b) => (b.weight?.split("-")[1] - a.weight?.split("-")[1]))
       };
     
     case PREV_PAGE:

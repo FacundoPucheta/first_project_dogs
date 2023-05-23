@@ -2,10 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterSource, filterTemper, getAllDogs, orderName, orderWeight } from "../../redux/actions";
 
 const Filters = () => {
-  const {temperaments} = useSelector((state) => state.temperaments);
+  const temperaments = useSelector((state) => state.temperaments);
   const dispatch = useDispatch();
 
-  const handleTemper = (event) => {
+  const handleTemper = async (event) => {
+    await dispatch(getAllDogs());
     dispatch(filterTemper(event.target.value));
   };
 
@@ -19,9 +20,9 @@ const Filters = () => {
 
   const handleSource = async (event) => {
 
-  const allDogs = await dispatch(getAllDogs());
-   await dispatch(filterSource(event.target.value, allDogs));
-  console.log(allDogs)
+   const allDogs = await dispatch(getAllDogs());
+   dispatch(filterSource(event.target.value, allDogs));
+  
   };
 
   return (
@@ -31,13 +32,12 @@ const Filters = () => {
         <div>
           <label>Temperament </label>
           <select onChange={handleTemper}>
-            {temperaments?.map((temp) => {
-            return (
+            {temperaments?.map((temp) =>  (
               <option key={temp.id} value={temp.name}>
                 {temp.name}
               </option>
-            )
-            })}
+            ))
+            }
           </select>
 
           <br></br>
@@ -59,7 +59,7 @@ const Filters = () => {
         <label>Source </label>
         <label>
           All
-          <input type="radio" name="source" value="all" onChange={handleSource} />
+          <input type="radio" name="source" value="all" defaultChecked onChange={handleSource} />
         </label>
         <br />
         <label>
