@@ -4,7 +4,7 @@ import Paginate from "../Paginate/Paginate";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-
+const errorImage= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSnkcW5ezogdx5ztSElyK3hLPlqFUqkMzthMLL33ehArDpO9X3U2yK5NReuFb4Wnhq9aQ&usqp=CAU";
 const defaultImg =
   "https://img.ecartelera.com/noticias/fotos/24800/24860/5.jpg";
 
@@ -21,7 +21,9 @@ const DogsContainer = () => {
   let cantPages = Math.ceil(dogs?.length / 8);
   
   useEffect(() => {
-    setCopyDogs(dogs);
+    if(Array.isArray(dogs)){
+      setCopyDogs(dogs); 
+    }
   }, [dogs, numPage]);
   
   let viewDogs = copyDogs?.slice(firstIndex, lastIndex );
@@ -48,7 +50,11 @@ const DogsContainer = () => {
         </div>
       </div>
     ) : (
-      <div>Loading...</div>
+      <>
+      <div>Oops..!</div>
+      <p> - Dog's not found -</p>
+      <img src={errorImage} alt="error" />
+      </>
     );
   
 };

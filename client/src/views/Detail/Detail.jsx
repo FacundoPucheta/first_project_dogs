@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CardDetail from "../../components/CardDetail/CardDetail";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,11 +10,15 @@ const Detail = () => {
   const { id } = useParams();
   const defaultImg = "https://img.ecartelera.com/noticias/fotos/24800/24860/5.jpg";
 
+  
+  
   useEffect(() => {
     dispatch(getDogById(id));
+    
   }, [dispatch, id]);
 
   return (
+    <>
     
     <div>
       <CardDetail
@@ -27,11 +31,8 @@ const Detail = () => {
         temperament={dogs.temperament}
         life_span={dogs.life_span}
       />
-      <br></br>
-      <Link to="/home" style={{ color: "orangered", outlineColor: "coral" }}>
-        Volver!
-      </Link>
     </div>
+    </>
   );
 };
 

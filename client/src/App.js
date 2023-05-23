@@ -14,7 +14,7 @@ import "./App.css";
   return (
     <div className="App">
 
-      {(location !== "/" && !location.includes("detail")) && <NavBar />}
+      {(location !== "/" && location !== "create") && <NavBar />}
 
       <Routes>
       <Route path="/" element={<Landing />} /> 

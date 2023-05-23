@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { createDog, getAllTemper } from "../../redux/actions";
+import { backHome, createDog, getAllTemper } from "../../redux/actions";
 import style from "./Form.module.css";
 import validateForm from "../../validations/validation";
 
@@ -45,6 +45,10 @@ const dispatch = useDispatch();
     });
     setSelectScreen([]);
     setErrors({errors: true});
+  };
+
+  const handleBack = () => {
+    dispatch(backHome());
   };
 
   const handleSubmit = (event) => {
@@ -169,11 +173,11 @@ const dispatch = useDispatch();
           ))}</div>
           
         </div>
-        <button onClick={handleSubmit} disabled={Object.keys(errors).length > 0}>Create! ✔️</button> 
+        <button onClick={handleSubmit} disabled={(Object.keys(errors).length > 0 ) || (!selectScreen.length)}>Create! ✔️</button> 
         
       </form>
 
-      <NavLink to="/home" style={{ color: "salmon" }}>
+      <NavLink to="/home" style={{ color: "salmon" }} onClick={()=> handleBack()}>
         EXIT
       </NavLink>
     </>

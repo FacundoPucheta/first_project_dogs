@@ -1,4 +1,4 @@
-import { GET_ALL_DOGS, GET_ID_DOG, GET_NAME_DOG, GET_TEMPER, RESET_DOG, CREATE_DOG, NEXT_PAGE, PREV_PAGE, FIRST_PAGE, LAST_PAGE, FILTER_SOURCE, FILTER_TEMPER, ORDER_NAME, ORDER_WEIGHT } from "./action-types";
+import { GET_ALL_DOGS, GET_ID_DOG, GET_NAME_DOG, GET_TEMPER, RESET_DOG, CREATE_DOG, NEXT_PAGE, PREV_PAGE, FIRST_PAGE, LAST_PAGE, FILTER_SOURCE, FILTER_TEMPER, ORDER_NAME, ORDER_WEIGHT, BACK_HOME } from "./action-types";
 
 
 const initialState = {
@@ -14,12 +14,14 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         dogs: payload,
+        numPage: 1 
       };
 
     case GET_ID_DOG:
       return {
         ...state,
         dogs: payload,
+        numPage: 1
       };
 
     case GET_NAME_DOG:
@@ -110,10 +112,17 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         numPage: payload,
       };
+
     case RESET_DOG:
       return {
         ...state,
         dogs: [],
+      };
+
+    case BACK_HOME:
+      return {
+        ...state,
+        numPage: 1
       };
 
     default:

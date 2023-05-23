@@ -12,3 +12,4 @@ export const FILTER_TEMPER = "FILTER_TEMPER";
 export const FILTER_SOURCE = "FILTER_SOURCE";
 export const ORDER_NAME = "ORDER_NAME";
 export const ORDER_WEIGHT = "ORDER_WEIGHT";
+export const BACK_HOME = "BACK_HOME";
