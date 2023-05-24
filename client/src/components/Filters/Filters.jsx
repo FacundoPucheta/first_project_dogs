@@ -7,7 +7,7 @@ const Filters = () => {
   const dispatch = useDispatch();
 
 
-  const handleTemper = async (event) => {
+  const handleTemper =  async (event) => {
     await dispatch(getAllDogs());
     dispatch(filterTemper(event.target.value));
   };

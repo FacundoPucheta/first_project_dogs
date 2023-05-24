@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllDogs, getAllTemper } from "../../redux/actions";
+import { getAllDogs, getAllTemper, resetDog } from "../../redux/actions";
 import DogsContainer from "../../components/DogsContainer/DogsContainer";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Filters from "../../components/Filters/Filters";
@@ -14,6 +14,9 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllDogs());
     dispatch(getAllTemper());
+    return (() => {
+      dispatch(resetDog());
+    })
   }, [dispatch]);
 
   const handleClick = (event) => {

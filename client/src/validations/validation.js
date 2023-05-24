@@ -1,6 +1,7 @@
+
 // Can be improved (add new ones or needed)
 const validateForm = (newBreed) => {
-
+    
     const errors = {};
 
     if(newBreed.name.length === 0){

@@ -27,6 +27,7 @@ const [newBreed, setNewBreed] = useState({
   temperament: [],
 });
 
+
 const resetForm = () => {
   setNewBreed({
     name: "",
@@ -50,6 +51,7 @@ const handleBack = () => {
 
 const handleSubmit = (event) => {
   event.preventDefault();
+
   const newBreedCreated = {
     ...newBreed,
     height: `${newBreed.minHeight} - ${newBreed.maxHeight}`,
@@ -64,6 +66,7 @@ const handleSubmit = (event) => {
     })
     .catch(() => {
       setCreationState("Error creating dog breed!");
+      resetForm();
     });
 };
 

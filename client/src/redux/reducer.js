@@ -66,6 +66,7 @@ const reducer = (state = initialState, { type, payload }) => {
       const temperFilter = dogsCopy.filter((dog) =>
         dog.temperament?.toLowerCase().includes(payload)
       );
+      if(temperFilter.length === 0) return {...state, error:"Dogs not found.." }
       return {
         ...state,
         dogs: temperFilter,
@@ -82,6 +83,12 @@ const reducer = (state = initialState, { type, payload }) => {
       }
       if (payload === "created") {
         dogSource = state.dogs.filter((dog) => dog.belongToDb === true);
+      }
+
+      if(dogSource.length === 0) return {
+        ...state, 
+        numPage: 1,
+        error: "Dogs not found.."
       }
       return {
         ...state,

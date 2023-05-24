@@ -75,9 +75,7 @@ export const getAllTemper = () => {
   return async (dispatch) => {
     const allTemper = await axios.get(`${REQ_TEMPER}/`);
     const temper = allTemper.data;
-    const orderedTempers = [...temper].sort((a, b) =>
-      a.name > b.name ? 1 : -1
-    );
+    const orderedTempers = [...temper].sort((a, b) => a.name > b.name ? 1 : -1);
     dispatch({ type: GET_TEMPER, payload: orderedTempers });
   };
 };
