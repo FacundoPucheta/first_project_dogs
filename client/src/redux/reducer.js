@@ -15,12 +15,14 @@ import {
   ORDER_WEIGHT,
   BACK_HOME,
   SET_ERROR,
+  LAST_NUM_PAGE,
 } from "./action-types";
 
 const initialState = {
   dogs: [],
   temperaments: [],
   numPage: 1,
+  lastNumPage:1,
   error: [],
 };
 
@@ -31,7 +33,7 @@ const reducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         dogs: payload,
-        numPage: 1,
+        numPage: state.lastNumPage,
       };
 
     case GET_ID_DOG:
@@ -129,6 +131,12 @@ const reducer = (state = initialState, { type, payload }) => {
         numPage: payload,
       };
 
+    case LAST_NUM_PAGE:
+      return {
+        ...state,
+        lastNumPage: payload,
+      };
+
     case RESET_DOG:
       return {
         ...state,
@@ -138,7 +146,7 @@ const reducer = (state = initialState, { type, payload }) => {
     case BACK_HOME:
       return {
         ...state,
-        numPage: 1,
+        numPage: state.lastNumPage,
       };
 
     case SET_ERROR:

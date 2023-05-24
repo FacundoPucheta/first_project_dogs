@@ -10,7 +10,7 @@ import {
 
 const Paginate = ({ cantPages }) => {
 
-  const { numPage } = useSelector((state) => state);
+  const numPage = useSelector((state) => state.numPage);
   const dispatch = useDispatch();
 
   const firstPage = () => {

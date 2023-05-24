@@ -1,13 +1,17 @@
 import style from "./DogCard.module.css";
-import { useDispatch } from "react-redux";
-import { resetDog } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { resetDog, toLastNumPage } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
 const DogCard = (props) => {
+
+  const numPage = useSelector(state => state.numPage);
   const dispatch = useDispatch();
 
   const handleDetail = () => {
+    dispatch(toLastNumPage(numPage));
     dispatch(resetDog());
+    console.log(numPage)
   };
 
   return (

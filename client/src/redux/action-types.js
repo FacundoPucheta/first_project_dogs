@@ -8,6 +8,7 @@ export const NEXT_PAGE = "NEXT_PAGE";
 export const PREV_PAGE = "PREV_PAGE";
 export const FIRST_PAGE = "FIRST_PAGE";
 export const LAST_PAGE = "LAST_PAGE";
+export const LAST_NUM_PAGE = "LAST_NUM_PAGE";
 export const FILTER_TEMPER = "FILTER_TEMPER";
 export const FILTER_SOURCE = "FILTER_SOURCE";
 export const ORDER_NAME = "ORDER_NAME";

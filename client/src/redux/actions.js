@@ -15,6 +15,7 @@ import {
   ORDER_NAME,
   ORDER_WEIGHT,
   SET_ERROR,
+  LAST_NUM_PAGE,
 } from "./action-types";
 import axios from "axios";
 
@@ -100,6 +101,11 @@ export const toFirstPage = () => {
 export const toLastPage = (lastPage) => {
   return (dispatch) => {
     dispatch({ type: LAST_PAGE, payload: lastPage });
+  };
+};
+export const toLastNumPage = (lastNumPage) => {
+  return (dispatch) => {
+    dispatch({ type: LAST_NUM_PAGE, payload: lastNumPage });
   };
 };
 

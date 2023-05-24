@@ -1,4 +1,4 @@
-import { backHome, createDog, getAllTemper } from "../../redux/actions";
+import { backHome, createDog, getAllTemper, toLastNumPage } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
@@ -8,6 +8,7 @@ import style from "./Form.module.css";
 const Form = () => {
 
 const temperaments = useSelector((state) => state.temperaments);
+const numPage = useSelector((state) => state.numPage);
 const dispatch = useDispatch();
 
 const [creationState, setCreationState] = useState("");
@@ -43,6 +44,7 @@ const resetForm = () => {
 };
 
 const handleBack = () => {
+   dispatch(toLastNumPage(numPage));
   dispatch(backHome());
 };
 
