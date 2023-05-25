@@ -5,18 +5,18 @@ import { getAllDogs, getAllTemper, resetDog } from "../../redux/actions";
 import DogsContainer from "../../components/DogsContainer/DogsContainer";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import Filters from "../../components/Filters/Filters";
+import styles from "./Home.module.css";
 
 const Home = () => {
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getAllDogs());
     dispatch(getAllTemper());
-    return (() => {
+    return () => {
       dispatch(resetDog());
-    })
+    };
   }, [dispatch]);
 
   const handleClick = (event) => {
@@ -25,20 +25,33 @@ const Home = () => {
   };
 
   return (
+    <div className={styles.mainContainerHome}>
+      <div className={styles.container1}>
+        <div className={styles.filters}>
+          <Filters />
+        </div>
 
-    <div>
-      <h1>Esta es la vista de Home</h1>
-      <Filters />
-      <button onClick={() => navigate("/create")} style={{ color: "red" }}>CREATE!</button>
-
-      <div>
-      <SearchBar />
-      <button onClick={handleClick}>Get All :) </button>
+        <div className={styles.container2}>
+          <div>
+            <button
+              className={styles.button2}
+              onClick={() => navigate("/create")}
+            >
+              CREATE!
+            </button>
+          </div>
+          <div className={styles.container3} >
+            <button style={{fontWeight: "bolder"}} className={styles.button1} onClick={handleClick}>
+              Dogs Up!
+            </button>
+            <div>
+              <SearchBar />
+            </div>
+          </div>
+        </div>
       </div>
-      
       <DogsContainer />
     </div>
-    
   );
 };
 

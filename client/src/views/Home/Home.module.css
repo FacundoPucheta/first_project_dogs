@@ -1,0 +1,58 @@
+.mainContainerHome {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-block: 0.7rem;
+    padding: 20px;
+}
+
+.container1 {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: row;
+    width: 200vh;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.container3 {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-inline: 0.1em;
+    margin-bottom: auto;    
+}
+.button1{
+    background-color: white;
+    color: #f7630c;
+    border-color: #f7630c;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2px;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.button2 {
+    background-color: #f7630c;
+    color:whitesmoke;
+    font-weight: bold;
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: none;
+    border-color: black;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 0.8rem 1.2rem;
+}

@@ -1,5 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { filterSource, filterTemper, getAllDogs, orderName, orderWeight } from "../../redux/actions";
+import styles from "./Filters.module.css";
+
 
 const Filters = () => {
 
@@ -27,12 +29,13 @@ const Filters = () => {
 
   return (
 
-    <div>
-      
-      <div>
-        <div>Filter by:</div>
+    <div className={styles.filters}>
+      <div className={styles.containerOrder}>
+      <div className={styles.filterContainer}>Filter by:</div>
+      <div className={styles.order}>
+
         <div>
-          <label>Temperament </label>
+          <label>Temperament: </label>
           <select onChange={handleTemper}>
             {temperaments?.map((temp) => (
               <option key={temp.id} value={temp.name}>
@@ -43,29 +46,34 @@ const Filters = () => {
           </div>
 
           <div>
-          <label>Name </label>
+          <label>Name: </label>
           <select onChange={handleName}>
             <option value="A"> A - Z ↕️</option>
             <option value="Z"> Z - A ↕️</option>
           </select>
+          </div>
 
-          <label>Weight:  
+          <div> 
+          <label>Weight: </label> 
           <select onChange={handleWeight}>
             <option value="A">Lowest</option>
             <option value="D">Higher</option>
           </select>
-          can be..
-          </label>
+          <span style={{marginLeft: "0.5rem"}}>can be..</span>
+          
         </div>
       </div>
+      </div>
 
-      <section>
-        <label>Source </label>
+      <section className={styles.containerOrder}>
+        <div className={styles.filterContainer}>Source </div>
+        <div className={styles.order}>
         <label>All<input type="radio" name="source" value="all" defaultChecked onChange={handleSource} /></label>
         <br />
         <label>Default <input type="radio" name="source" value="default" onChange={handleSource} /> </label>
         <br />
         <label>Created<input type="radio" name="source" value="created" onChange={handleSource} /> </label>
+        </div>
       </section>
 
     </div>

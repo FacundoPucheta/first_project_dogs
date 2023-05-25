@@ -1,0 +1,40 @@
+.filters {
+    display: flex;
+    width: 200vh;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    
+ }
+
+.containerOrder{
+    display: flex;
+    flex-direction: column;
+    
+}
+.containerOrder > div {
+    margin-bottom: 1rem;
+}
+
+.filterContainer {
+    border-bottom: 2px solid #f7630c;
+    font-weight: bold;
+  }
+
+ .order {
+    display: flex;
+    flex-direction: row;
+    
+ }
+
+ .order > div {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 3rem;
+ }
+ .order label {
+    margin-right: 0.5rem;
+ }
+ 
+ 
