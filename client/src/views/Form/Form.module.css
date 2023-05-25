@@ -7,7 +7,6 @@
     border-radius: 20px;
     margin: 5px;
     width: fit-content;
-    max-width: var(--half-width);
     overflow: auto;
   }
   
@@ -20,7 +19,3 @@
     cursor: pointer ;
     white-space: nowrap;
   }
-
-  :root {
-    --half-width: 50vw;
-}

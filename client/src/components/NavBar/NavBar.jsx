@@ -15,7 +15,17 @@ const NavBar = () => {
   return (
     <div>
 
-      <header> DOG API </header>
+      <header> 
+      <span>🐾</span>
+      <span>🐾</span>
+      <span>🐾</span>
+      <span>🐾</span>
+      
+      <span>🐾</span>
+      <span>🐾</span>
+      <span>🐾</span>
+      <span>🐾</span>
+       </header>
       <div className={style.mainCointeiner}>
         <NavLink to="/home" style={{ color: "red" }}>HOME</NavLink>
         <NavLink to="/" onClick={()=>handleExit()} style={{ color: "red" }}>EXIT</NavLink>

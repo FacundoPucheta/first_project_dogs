@@ -49,11 +49,13 @@ const Filters = () => {
             <option value="Z"> Z - A ↕️</option>
           </select>
 
-          <label>Weight </label>
+          <label>Weight:  
           <select onChange={handleWeight}>
-            <option value="A">Ascending</option>
-            <option value="D">Descending</option>
+            <option value="A">Lowest</option>
+            <option value="D">Higher</option>
           </select>
+          can be..
+          </label>
         </div>
       </div>
 

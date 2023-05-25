@@ -1,8 +1,95 @@
-.mainContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    background-color: rgb(0, 0, 0);
-    color: aliceblue;
-    padding: 0.5rem - 2.5rem;
+
+.mainContainer {
+    background-image: url(./bgLanding2.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+    opacity: 9rem;
+    width:100%;
+    height: 100vh;
 }
+
+.banner {
+    height: 7rem;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 10px;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.986);
+    opacity: 93%;
+    color: rgb(255, 153, 0);
+    font-size: 1.7rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    border-bottom: 4px solid rgb(221, 42, 42);
+    border-radius: 0 0 30% 30% / 20px;
+    
+}
+
+.mainContainer footer {
+    
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px;
+    font-size: medium;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
+}
+
+
+
+
+.landing {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: center;
+    margin-top: 7em;
+    margin-bottom: 0.5em;
+    
+}
+
+.landing button {
+    color: black;
+    height: 44px;
+    width: 5em;
+    padding: 1 2.5em;
+    border-radius: 8px;
+    border: transparent solid 2px;
+    background-color: orange;
+    border-color: #000000;
+    cursor: pointer;
+    font-size: larger;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.landing button:hover {
+    background-color: orangered;
+    color: white;
+    border-color: #000000;
+ }
+ .landing button:active {
+    background-color: #d25e61;
+    color: white;
+    font-size: bold medium;
+ }
+
+
+.legend {
+    width: max-content;
+    margin-top: -50px;
+    margin-bottom: 40px;
+    font-size: 1.3rem;
+    font-weight: bolder;
+    padding: 0.5rem;
+    color: rgb(0, 0, 0);
+    font-family: cursive;
+    font-style: italic ;
+    background-color: rgba(255, 255, 255, 0.301);
+    border-radius: 99px;
+}
+
+
