@@ -25,6 +25,7 @@ const Filters = () => {
   const handleSource = async (event) => {
     const allDogs = await dispatch(getAllDogs());
     dispatch(filterSource(event.target.value, allDogs));
+    
   };
 
   return (
@@ -48,8 +49,8 @@ const Filters = () => {
           <div>
           <label>Name: </label>
           <select onChange={handleName}>
-            <option value="A"> A - Z ↕️</option>
-            <option value="Z"> Z - A ↕️</option>
+            <option value="A"> A - Z 🡣</option>
+            <option value="Z"> Z - A 🡣</option>
           </select>
           </div>
 
@@ -57,9 +58,9 @@ const Filters = () => {
           <label>Weight: </label> 
           <select onChange={handleWeight}>
             <option value="A">Lowest</option>
-            <option value="D">Higher</option>
+            <option value="D">Highest</option>
           </select>
-          <span style={{marginLeft: "0.5rem"}}>can be..</span>
+          <span style={{marginLeft: "0.5rem"}}>they can be..</span>
           
         </div>
       </div>

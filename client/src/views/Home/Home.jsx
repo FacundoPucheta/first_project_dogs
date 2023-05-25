@@ -41,7 +41,7 @@ const Home = () => {
             </button>
           </div>
           <div className={styles.container3} >
-            <button style={{fontWeight: "bolder"}} className={styles.button1} onClick={handleClick}>
+            <button style={{fontWeight: "bolder"}} className={styles.button3} onClick={handleClick}>
               Dogs Up!
             </button>
             <div>

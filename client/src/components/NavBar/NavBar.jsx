@@ -15,7 +15,7 @@ const NavBar = () => {
   return (
     <div>
 
-      <header> 
+      <header className={style.header}> 
       <span>🐾</span>
       <span>🐾</span>
       <span>🐾</span>
@@ -26,9 +26,11 @@ const NavBar = () => {
       <span>🐾</span>
       <span>🐾</span>
        </header>
-      <div className={style.mainCointeiner}>
-        <NavLink to="/home" style={{ color: "red" }}>HOME</NavLink>
-        <NavLink to="/" onClick={()=>handleExit()} style={{ color: "red" }}>EXIT</NavLink>
+      <div className={style.conteiner1}>
+        <NavLink to="/home" >About..</NavLink>
+        <div className={style.exitBtn}>
+        <NavLink to="/" onClick={()=>handleExit()} >EXIT</NavLink>
+        </div>
       </div>
 
     </div>

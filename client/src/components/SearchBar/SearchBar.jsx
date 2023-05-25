@@ -21,8 +21,8 @@ const SearchBar = () => {
     return(
 
         <section>
-        <div>
-            <input placeholder="Search by doggy name..." onChange={handleSearch} value={name}/>
+        <div className={styles.mainContainer}>
+            <input style={{marginRight: "0.3rem"}} placeholder="Search by doggy name..." onChange={handleSearch} value={name}/>
             <button className={styles.button1} onClick={() => {onSearch(name)}}>Search</button>
         </div>
         </section>

@@ -4,19 +4,48 @@
     align-items: center;
     justify-content: center;
     height: auto;
+    margin-bottom: 2rem;
+    margin-top: -1rem;
 }
 
 .page span {
-    color: rgba(185, 111, 0, 0.767);
+    color: rgb(221, 42, 42);
     font-weight: bold;
-    text-shadow: 1px 2px 1px rgb(228, 185, 128);
+    text-shadow: 1px 2px 1px rgb(151, 16, 16);
     -webkit-text-stroke: 0.7px black;
+    padding: 1rem;
+    cursor: pointer;
     
 }
 
-.page p, h2 {
-    background-color: rgb(216, 165, 99);
+.page p {
+    background-color: #d25e61;
     border-radius: 4px;
+    margin: 4px;
+    padding: 4px;
+}
+
+.page button {
+    background-color: transparent;
+    cursor: pointer;
+    color: rgb(221, 42, 42);
+    border-left: none;
+    border-right: none;
+    border-top-color: rgb(221, 42, 42);
+    border-bottom-color: rgb(221, 42, 42);
+    margin-left: 1rem;
+    margin-right: 1rem;
+    height: 2rem;
+}
+
+.currentPage {
+    color:rgb(221, 42, 42);
+    /* border-color: rgb(221, 42, 42); */
+    /* border-style: solid; */
+    /* border-width: 1px;
+    border-radius: 2px; */
+    height: max-content;
+    width: max-content;
     margin: 4px;
     padding: 4px;
 }
