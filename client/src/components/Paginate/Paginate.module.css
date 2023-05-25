@@ -3,23 +3,24 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: auto;
     margin-bottom: 2rem;
     margin-top: -1rem;
+    flex-grow: 1;
 }
 
 .page span {
     color: rgb(221, 42, 42);
     font-weight: bold;
     text-shadow: 1px 2px 1px rgb(151, 16, 16);
-    -webkit-text-stroke: 0.7px black;
+    align-items: last baseline;
     padding: 1rem;
     cursor: pointer;
     
 }
 
 .page p {
-    background-color: #d25e61;
+    color: rgb(221, 42, 42);
+    background-color: white;
     border-radius: 4px;
     margin: 4px;
     padding: 4px;
@@ -39,13 +40,12 @@
 }
 
 .currentPage {
+    display: flex;
+    align-items: center;
     color:rgb(221, 42, 42);
-    /* border-color: rgb(221, 42, 42); */
-    /* border-style: solid; */
-    /* border-width: 1px;
-    border-radius: 2px; */
-    height: max-content;
-    width: max-content;
+    font-size: xx-large;
+    height: 2rem;
+    width: 2rem;
     margin: 4px;
     padding: 4px;
 }
