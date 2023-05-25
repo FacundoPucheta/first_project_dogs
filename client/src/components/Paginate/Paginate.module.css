@@ -6,6 +6,7 @@
     margin-bottom: 2rem;
     margin-top: -1rem;
     flex-grow: 1;
+    
 }
 
 .page span {
@@ -22,12 +23,11 @@
     color: rgb(221, 42, 42);
     background-color: white;
     border-radius: 4px;
-    margin: 4px;
-    padding: 4px;
 }
 
 .page button {
     background-color: transparent;
+    
     cursor: pointer;
     color: rgb(221, 42, 42);
     border-left: none;
@@ -45,7 +45,6 @@
     color:rgb(221, 42, 42);
     font-size: xx-large;
     height: 2rem;
-    width: 2rem;
     margin: 4px;
     padding: 4px;
 }

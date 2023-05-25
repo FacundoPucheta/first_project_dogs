@@ -24,7 +24,8 @@ const DogCard = (props) => {
         <h3>"{props.name}"</h3>
       </Link>
 
-      <p>Temperament: {props.temperament}</p>
+      <div>Temperament</div>
+      <div>{props.temperament}</div>
       <p>Weight: {props.weight} kg</p>
     </div>
   );

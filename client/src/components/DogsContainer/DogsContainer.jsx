@@ -39,7 +39,8 @@ const DogsContainer = () => {
   return viewDogs && viewDogs?.length > 0 
   ? (
 
-    <div>
+    <div className={style.mainContainer}>
+      <div className={style.centerContainer}>
       <Paginate cantPages={cantPages} />
       <div className={style.container}>
         {viewDogs?.map((dog) => (
@@ -52,6 +53,7 @@ const DogsContainer = () => {
             temperament={dog.temperament}
           />
         ))}
+      </div>
       </div>
     </div>
   )

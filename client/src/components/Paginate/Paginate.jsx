@@ -34,7 +34,7 @@ const Paginate = ({ cantPages }) => {
       <button onClick={prev} disabled={numPage === 1}>Prev</button>
       {numPage - 1 >= 1 && <p>{numPage - 1}</p>}
       <h2 className={style.currentPage}>{numPage}</h2>
-      {numPage + 1 < cantPages && <p>{numPage + 1}</p>}
+      {numPage + 1 <= cantPages && <p>{numPage + 1}</p>}
       <button onClick={next} disabled={numPage === cantPages}>Next</button>
       <br/>
       <span onClick={lastPage}>Last..</span>
