@@ -3,6 +3,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { Landing, Home, Detail, Form } from "./views";
 import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import "./App.css";
+import About from "./components/About/About";
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/create" element={<Form />} />
+        <Route path="/about" element={<About />} />
         <Route path="/*" element={<Navigate to= "/errornf" />} />
         <Route path="/errornf" element={<ErrorNotFound />} />
       </Routes>

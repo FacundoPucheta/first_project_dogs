@@ -11,7 +11,7 @@ const DogCard = (props) => {
   const handleDetail = () => {
     dispatch(toLastNumPage(numPage));
     dispatch(resetDog());
-    console.log(numPage)
+    
   };
 
   return (

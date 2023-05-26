@@ -1,0 +1,45 @@
+.container {
+    text-align: center;
+    padding: 2rem;
+    background-color: #ffffffbb;
+    
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+footer {
+    font-size: 1rem;
+    
+    bottom: 0;
+    right: 0;
+    color: rgb(197, 114, 20);
+    margin-top: 2rem;
+}
+
+.btn {
+    margin-top: 1rem;
+    font-family: cursive;
+    color: black;
+    font-size: x-large;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+
+}
+.btn:hover {
+    text-decoration: dotted;
+    font-weight: bolder;
+    font-size: x-large;
+    color: #df6e12;
+    background-color: transparent;
+    
+  }
