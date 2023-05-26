@@ -138,22 +138,22 @@ useEffect(() => {
           <label>Height: 
           min <input type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
           max <input type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
-          </label>
           {formValidate?.height && <div>{formValidate.height}</div>}
+          </label>
         </div>
         <div className={styles.labelInput}>
           <label>Weight: 
           min <input type="text" name="minWeight" value={newBreed.minWeight} onChange={handleChange}/> -
           max <input type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
-          </label>
           {formValidate?.weight && <div>{formValidate.weight}</div>}
+          </label>
         </div>
         <div className={styles.labelInput}>
           <label>Lifespan: 
             min <input type="text" name="minLifespan" value={newBreed.minLifespan} onChange={handleChange}/> -
             max <input type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
-          </label>
             {formValidate?.life_span && <div>{formValidate.life_span}</div>}
+          </label>
         </div>
         
         <div className={styles.labelInput}>

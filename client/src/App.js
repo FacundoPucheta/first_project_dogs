@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       
-      {(location !== "/" && location !== "create" && location !== "errornf") && <NavBar />}
-
+      {(location !== "/" && location !== "errornf") && <NavBar />}
+      {/* {((location !== "/" && location !== "errornf") && !location.includes("create")) && <NavBar />} */}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />

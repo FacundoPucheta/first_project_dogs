@@ -3,6 +3,7 @@ import { getDogById } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import CardDetail from "../../components/CardDetail/CardDetail";
+import styles from "./Detail.module.css";
 
 const Detail = () => {
   
@@ -21,7 +22,7 @@ const Detail = () => {
 
   return (
     <>
-      <div>
+      <div className={styles.mainContainer}>
         <CardDetail
           key={dogs.id}
           id={dogs.id}
