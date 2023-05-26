@@ -1,3 +1,26 @@
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 200vh;
+  margin-top: 5rem;
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.spaceTemper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  justify-content: left;
+}
+
 .selectedOption {
     display: flex;
     flex-direction: row;
@@ -18,4 +41,39 @@
     margin-left: 5px;
     cursor: pointer ;
     white-space: nowrap;
+  }
+
+  .labelInput {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    align-items: baseline;
+    justify-content: flex-start;
+  }
+
+  .message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10rem;
+    padding-top: 3rem;
+  }
+  
+  .messageBack {
+    font-size: xx-large;
+    font-weight: bold;
+    
+  }
+  
+  .messageCreation {
+    font-size: larger;
+    font-style: italic;
+    border-bottom: 1px solid black ;
+    margin-bottom: 1rem;
+  }
+  
+  .messageBack a {
+    text-decoration: none;
+    color: black;
   }

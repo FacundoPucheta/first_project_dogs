@@ -20,13 +20,16 @@ const DogCard = (props) => {
         <img src={props.image} alt={props.name} />
       </div>
       
-      <Link to={`/detail/${props.id}`} onClick={() => handleDetail()}>
-        <h3>"{props.name}"</h3>
+      <Link className={style.link} to={`/detail/${props.id}`} onClick={() => handleDetail()}>
+        <h2>"{props.name}"</h2>
       </Link>
-
-      <div>Temperament</div>
+    
+      <div className={style.description}>
+      <div className={style.descriptionTemper}>Temperament</div>
       <div>{props.temperament}</div>
+      </div>
       <p>Weight: {props.weight} kg</p>
+    
     </div>
   );
 };

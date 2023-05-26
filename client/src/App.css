@@ -3,6 +3,11 @@
 }
 
 body {
+    background-image: url("./bgHome.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
     margin: 0;
     padding: 0;
   }

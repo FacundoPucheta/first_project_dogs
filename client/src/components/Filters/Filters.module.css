@@ -1,17 +1,21 @@
+
 .filters {
     display: flex;
-    width: 210vh;
+    flex-direction: column;
+    width: auto;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: left;
+    align-items: flex-start;
     margin-top: -0.3rem;
+    margin-bottom: 2rem;
+    
     
  }
 
 .containerOrder{
     display: flex;
     flex-direction: column;
-
+    margin-bottom: 2rem;
     
 }
 .containerOrder > div {
@@ -21,6 +25,7 @@
 .filterContainer {
     border-bottom: 2px solid #f7630c;
     font-weight: bold;
+    
   }
 
  .order {

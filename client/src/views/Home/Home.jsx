@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <div className={styles.mainContainerHome}>
       <div className={styles.container1}>
-        <div className={styles.filters}>
+        <div >
           <Filters />
         </div>
 

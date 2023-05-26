@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import validateForm from "../../validations/validation";
-import style from "./Form.module.css";
+import styles from "./Form.module.css";
 
 const Form = () => {
 
@@ -118,49 +118,52 @@ useEffect(() => {
 
 
   return (
-    <>
-    {creationState === "Dog breed created successfully!" ? <p style={{ color: "green"}}>{creationState}</p> : <p style={{ color: "red" }}>{creationState}</p> }
-    
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className={styles.mainContainer}>
+  
+    <div  className={styles.formContainer}>
+      <form className={styles.formContainer} onSubmit={handleSubmit}>
+        
+        <div className={styles.labelInput}>
           <label>Name: </label>
           <input type="text" name="name" value={newBreed.name} onChange={handleChange}/>
-          {formValidate?.name && <span>{formValidate.name}</span>}
+          {formValidate?.name && <div>{formValidate.name}</div>}
         </div>
-        <div>
+        <div className={styles.labelInput}>
           <label>Image URL: </label>
           <input type="text" placeholder=" - max of 2000 chars " name="image" value={newBreed.image} onChange={handleChange}/>
           
         </div>
-        <div>
+        <div className={styles.spaceTemper}>
+        <div className={styles.labelInput}>
           <label>Height: 
           min <input type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
           max <input type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
           </label>
-          {formValidate?.height && <span>{formValidate.height}</span>}
+          {formValidate?.height && <div>{formValidate.height}</div>}
         </div>
-        <div>
+        <div className={styles.labelInput}>
           <label>Weight: 
           min <input type="text" name="minWeight" value={newBreed.minWeight} onChange={handleChange}/> -
           max <input type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
           </label>
-          {formValidate?.weight && <span>{formValidate.weight}</span>}
+          {formValidate?.weight && <div>{formValidate.weight}</div>}
         </div>
-        <div>
+        <div className={styles.labelInput}>
           <label>Lifespan: 
             min <input type="text" name="minLifespan" value={newBreed.minLifespan} onChange={handleChange}/> -
             max <input type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
           </label>
-            {formValidate?.life_span && <span>{formValidate.life_span}</span>}
+            {formValidate?.life_span && <div>{formValidate.life_span}</div>}
         </div>
-        <div>
-          <label>Temperament:  </label>
+        
+        <div className={styles.labelInput}>
+          <label >Temperament:  </label>
           <select multiple name="temper" value={handleChange.optionSelected} onChange={handleSelectChange} >
             {temperaments?.map((temp) => {
               return <option key={temp.id} value={temp.name} name={temp.name}>{temp.name}</option>;
             })}
           </select>
-          <div className={style.selectedOption}>{selectScreen.map((option) => (
+          <div className={styles.selectedOption}>{selectScreen.map((option) => (
             <div key={option}>
               <p>{option}</p>
               <button onClick={() => handleUpdateOp(option)}>❌</button>
@@ -168,14 +171,22 @@ useEffect(() => {
           ))}</div>
           
         </div>
+        </div>
         <button onClick={handleSubmit} disabled={(Object.keys(formValidate).length > 0 ) || (!selectScreen.length)}>Create! ✔️</button> 
         
       </form>
-
-      <NavLink to="/home" style={{ color: "salmon" }} onClick={()=> handleBack()}>
-        EXIT
+      </div>
+      <div className={styles.message}>
+        <div className={styles.messageCreation}>
+      {creationState === "Dog breed created successfully!" ? <p style={{ color: "green"}}>{creationState}</p> : <p style={{ color: "red" }}>{creationState}</p> }
+      </div>
+      <div className={styles.messageBack} >
+      <NavLink to="/home"  onClick={()=> handleBack()}>
+        Go back !
       </NavLink>
-    </>
+      </div>
+      </div>
+    </div>
   );
 };
 
