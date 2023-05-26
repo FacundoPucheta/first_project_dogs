@@ -27,11 +27,7 @@ const getDogById = async (id, source) => {
 
   if (source === "DB") {
     const dbDogs = await getDbDogs(id);
-    const temperProp = await dbDogs.temperaments
-      .map(
-        (temper) => temper.name.charAt(0).toUpperCase() + temper.name.slice(1)
-      )
-      .join(", ");
+    const temperProp = await dbDogs.temperaments.map((temper) => temper.name.charAt(0).toUpperCase() + temper.name.slice(1)).join(", ");
 
     const newDbDog = {
       id: dbDogs.id,
