@@ -7,7 +7,7 @@ const getAllTemper = async () => {
   if (allTemperDB.length === 0) {
     const getDogs = await getApiData();
 
-    // for get an array of tempers(stirngs)
+    // for get an array of tempers(strings)
     const getTemper = getDogs
       .map((dog) => dog.temperament)
       .join(", ")

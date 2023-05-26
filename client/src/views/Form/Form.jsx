@@ -136,22 +136,22 @@ useEffect(() => {
         <div className={styles.spaceTemper}>
         <div className={styles.labelInput}>
           <label>Height: 
-          min <input type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
-          max <input type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
+          min <input placeholder="-> m. <-" type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
+          max <input placeholder="-> m. <-" type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
           {formValidate?.height && <div>{formValidate.height}</div>}
           </label>
         </div>
         <div className={styles.labelInput}>
           <label>Weight: 
-          min <input type="text" name="minWeight" value={newBreed.minWeight} onChange={handleChange}/> -
-          max <input type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
+          min <input placeholder="-> kg. <-" type="text" name="minWeight" value={newBreed.minWeight} onChange={handleChange}/> -
+          max <input placeholder="-> kg. <-" type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
           {formValidate?.weight && <div>{formValidate.weight}</div>}
           </label>
         </div>
         <div className={styles.labelInput}>
           <label>Lifespan: 
-            min <input type="text" name="minLifespan" value={newBreed.minLifespan} onChange={handleChange}/> -
-            max <input type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
+            min <input placeholder="-> years <-" type="text" name="minLifespan" value={newBreed.minLifespan} onChange={handleChange}/> -
+            max <input placeholder="-> years <-" type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
             {formValidate?.life_span && <div>{formValidate.life_span}</div>}
           </label>
         </div>

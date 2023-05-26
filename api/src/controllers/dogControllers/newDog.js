@@ -8,8 +8,7 @@ const postNewDog = async ({
   life_span,
   temperament,
 }) => {
-  //temp sea un array
-  console.log(temperament)
+  
   const newDog = await Dog.create({
     image,
     name,
@@ -28,7 +27,6 @@ const postNewDog = async ({
     });
 
     newDog.addTemperament(findTemper);
-    
   });
 };
 module.exports = postNewDog;
