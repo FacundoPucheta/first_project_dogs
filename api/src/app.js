@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const router = require("./routes/index.js"); // si deja de funcionar, cambialo por routes(abajo en el use tambien)
 
-require("./db.js");
+require("./db.js").default;
 
 const server = express();
 
