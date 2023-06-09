@@ -129,7 +129,7 @@ useEffect(() => {
         <div className={styles.labelInput}>
           <label>Name: </label>
           <input type="text" name="name" value={newBreed.name} onChange={handleChange}/>
-          {formValidate?.name && <div>{formValidate.name}</div>}
+          {formValidate.name && <div className={styles.errorMsg} >{formValidate.name}</div>}
         </div>
         <div className={styles.labelInput}>
           <label>Image URL: </label>
@@ -139,24 +139,30 @@ useEffect(() => {
         <div className={styles.spaceTemper}>
         <div className={styles.labelInput}>
           <label>Height: 
-          min <input placeholder="-> m. <-" type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
+          min <input  placeholder="-> m. <-" type="text" name="minHeight" value={newBreed.minHeight} onChange={handleChange}/> -
           max <input placeholder="-> m. <-" type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
-          {formValidate?.height && <div>{formValidate.height}</div>}
           </label>
+          <div>
+          {formValidate.height && <div className={styles.errorMsg} >{formValidate.height}</div>}
+          </div>
         </div>
         <div className={styles.labelInput}>
           <label>Weight: 
           min <input placeholder="-> kg. <-" type="text" name="minWeight" value={newBreed.minWeight} onChange={handleChange}/> -
           max <input placeholder="-> kg. <-" type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
-          {formValidate?.weight && <div>{formValidate.weight}</div>}
           </label>
+          <div>
+          {formValidate.weight && <div className={styles.errorMsg} >{formValidate.weight}</div>}
+          </div>
         </div>
         <div className={styles.labelInput}>
           <label>Lifespan: 
             min <input placeholder="-> years <-" type="text" name="minLifespan" value={newBreed.minLifespan} onChange={handleChange}/> -
             max <input placeholder="-> years <-" type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
-            {formValidate?.life_span && <div>{formValidate.life_span}</div>}
           </label>
+          <div>
+            {formValidate.life_span && <div className={styles.errorMsg} >{formValidate.life_span}</div>}
+            </div>
         </div>
         
         <div className={styles.labelInput}>

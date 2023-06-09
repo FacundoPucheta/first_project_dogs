@@ -80,3 +80,11 @@
     text-decoration: none;
     color: black;
   }
+
+  .errorMsg {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: oblique;
+    font-size: small;
+    color: firebrick;
+    padding: 0.5rem;
+  }

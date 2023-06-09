@@ -5,7 +5,7 @@ const validateForm = (newBreed) => {
     const errors = {};
 
     if(newBreed.name.length === 0){
-      errors.name = "This value can't be emppty";
+      errors.name = "This value can't be empty";
     }
     else if(!/^[a-zA-Z0-9 ]*$/.test(newBreed.name)){
       errors.name = "Only alphabetical and numeric values allowed";
@@ -26,13 +26,13 @@ const validateForm = (newBreed) => {
         errors.weight = "Max weight must be greater than min weight";
     }
     else if(Number(newBreed.minHeight) > Number(newBreed.maxHeight)){
-        errors.weight = "Max height must be greater than min height";
+        errors.height = "Max height must be greater than min height";
     }
     else if(newBreed.minLifespan.length === 0 || newBreed.maxLifespan.length === 0) {
         errors.life_span = "This value can't be emppty";
     }
     else if(Number(newBreed.minLifespan) > Number(newBreed.maxLifespan)){
-        errors.weight = "Max life span must be greater than min life span";
+        errors.life_span = "Max life span must be greater than min life span";
     }
     else if(!/^[0-9]+$/.test(newBreed.minLifespan) || !/^[0-9]+$/.test(newBreed.maxLifespan) ){
         errors.life_span = "Only numeric values allowed";
