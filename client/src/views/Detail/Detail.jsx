@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import CardDetail from "../../components/CardDetail/CardDetail";
 import styles from "./Detail.module.css";
+import { ThreeBody } from '@uiball/loaders';
 
 const Detail = () => {
   
@@ -20,7 +21,7 @@ const Detail = () => {
     dispatch(getDogById(id));
   }, [dispatch, id]);
 
-  return (
+  return dogs.image ? (
     <>
       <div className={styles.mainContainer}>
         <CardDetail
@@ -35,6 +36,15 @@ const Detail = () => {
         />
       </div>
     </>
+  ) : (
+    <div className={styles.mainContainer}>
+      <ThreeBody
+        size={35}
+        speed={1.1}
+        color="black"
+        style={{ height: "100%" }}
+      />
+    </div>
   );
 };
 

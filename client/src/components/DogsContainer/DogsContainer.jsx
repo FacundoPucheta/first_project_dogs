@@ -4,6 +4,8 @@ import { cleanError } from "../../redux/actions";
 import Paginate from "../Paginate/Paginate";
 import DogCard from "../DogCard/DogCard";
 import style from "./DogsContainer.module.css";
+import { ThreeBody } from '@uiball/loaders';
+
 
 // const errorImage =
 //   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSnkcW5ezogdx5ztSElyK3hLPlqFUqkMzthMLL33ehArDpO9X3U2yK5NReuFb4Wnhq9aQ&usqp=CAU";
@@ -36,35 +38,32 @@ const DogsContainer = () => {
 
   if (error.length > 0) return <div>{error}</div>;
 
-  return viewDogs && viewDogs?.length > 0 
-  ? (
-
+  return viewDogs && viewDogs?.length > 0 ? (
     <div className={style.mainContainer}>
       <div className={style.centerContainer}>
-      <Paginate cantPages={cantPages} />
-      <div className={style.container}>
-        {viewDogs?.map((dog) => (
-          <DogCard
-            key={dog.id}
-            id={dog.id}
-            image={dog.image !== "" ? dog.image : defaultImg}
-            name={dog.name}
-            weight={dog.weight}
-            temperament={dog.temperament}
-          />
-        ))}
-      </div>
+        <Paginate cantPages={cantPages} />
+        <div className={style.container}>
+          {viewDogs?.map((dog) => (
+            <DogCard
+              key={dog.id}
+              id={dog.id}
+              image={dog.image !== "" ? dog.image : defaultImg}
+              name={dog.name}
+              weight={dog.weight}
+              temperament={dog.temperament}
+            />
+          ))}
+        </div>
       </div>
     </div>
-  )
-  : (
-
+  ) : (
     <div>
-      {loading ? (<div>Loading...</div>) 
-      : (setTimeout(() => {
+      {loading ? (<ThreeBody size={35} speed={1.1} color="black" />) 
+      : (
+        setTimeout(() => {
           setLoading(false);
-        }, 3000))
-        }
+        }, 3000)
+      )}
     </div>
   );
 
