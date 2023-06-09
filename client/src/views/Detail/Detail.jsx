@@ -16,6 +16,7 @@ const Detail = () => {
 
   const { id } = useParams();
   
+  if (dogs.image === "") dogs.image = defaultImg;
 
   useEffect(() => {
     dispatch(getDogById(id));
@@ -27,7 +28,7 @@ const Detail = () => {
         <CardDetail
           key={dogs.id}
           id={dogs.id}
-          image={dogs.image !== "" ? dogs.image : defaultImg}
+          image={dogs.image}
           name={dogs.name}
           height={dogs.height}
           weight={dogs.weight}
