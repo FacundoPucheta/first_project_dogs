@@ -101,7 +101,7 @@ const handleSelectChange = (event) => {
 
     setNewBreed({
       ...newBreed,
-      temperament: [...newBreed.temperament, ...optionSelected],
+      temperament: [...newBreed.temperament, ...optionSelected],        // can be changed. handleSelectChange and hanldleUpdateOp set temperament in diferent ways
     });
   }
 };
