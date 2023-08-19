@@ -9,7 +9,7 @@ const allDogs = async (req, res) => {
     const getDogs = name ? await getDogByName(name) : await getAllDogs();
     return res.status(200).json(getDogs);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(404).json({ error: error.message });
   }
 };
 
@@ -20,17 +20,17 @@ const idBreedsDogs = async (req, res) => {
     const dogById = await getDogById(id, source);
     return res.status(200).json(dogById);
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(404).json({ error: error.message });
   }
 };
 
 const createDog = async (req, res) => {
+  const { image, name, weight, height, life_span, temperament } = req.body;
   try {
-    const { image, name, weight, height, life_span, temperament } = req.body;
     await postNewDog({ image, name, weight, height, life_span, temperament });
     return res.status(200).json({ message: "Breed added successfully" });
   } catch (error) {
-    return res.status(400).json({ error: error.message });
+    return res.status(500).json({ error: error.message });
   }
 };
 
