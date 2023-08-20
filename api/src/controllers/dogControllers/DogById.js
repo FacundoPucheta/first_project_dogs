@@ -1,10 +1,10 @@
-const getApiData = require("../ApiData");
+const savedInfo = require("../ApiData");
 const { Dog, Temperament } = require("../../db");
 
 const getDogById = async (id, source) => {
   
-  const getApiDogs = async (id) => {
-    let apiDogs = await getApiData();
+  const getApiDogs = (id) => {
+    let apiDogs = savedInfo;
     apiDogs = apiDogs.find((dog) => dog.id === +id);
     if (!apiDogs) throw Error(`No dogs found with ID: ${id}.`);
     return apiDogs;

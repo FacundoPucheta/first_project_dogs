@@ -1,21 +1,19 @@
-const getApiData = require("../ApiData");
+const savedInfo = require("../ApiData");
 const { Temperament } = require("../../db");
 
 const getAllTemper = async () => {
   const allTemperDB = await Temperament.findAll();
 
   if (allTemperDB.length === 0) {
-    const getDogs = await getApiData();
-
     // for get an array of tempers(strings)
-    const getTemper = getDogs
+    const getTemper = savedInfo
       .map((dog) => dog.temperament)
       .join(", ")
       .split(", ");
 
     const getFilteredTemper = getTemper.filter((temper) => temper !== "");
 
-    getFilteredTemper.forEach( async (temper) => {
+    getFilteredTemper.forEach(async (temper) => {
       await Temperament.findOrCreate({
         where: { name: temper.toLowerCase() },
       });

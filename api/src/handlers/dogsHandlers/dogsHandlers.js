@@ -30,7 +30,7 @@ const createDog = async (req, res) => {
     await postNewDog({ image, name, weight, height, life_span, temperament });
     return res.status(200).json({ message: "Breed added successfully" });
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 };
 
