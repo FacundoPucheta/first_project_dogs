@@ -8,7 +8,6 @@ const postNewDog = async ({
   life_span,
   temperament,
 }) => {
-  
   const newDog = await Dog.create({
     image,
     name,
@@ -21,12 +20,11 @@ const postNewDog = async ({
 
   const newTemperament = [...new Set(temperament)];
 
-  newTemperament.forEach(async (temper) => {
-    const findTemper = await Temperament.findOne({
-      where: { name: temper },
-    });
+  for (const temper of newTemperament) {
+    const findTemper = await Temperament.findOne({ where: { name: temper } });
+    if (!findTemper) throw new Error(`Temperament "${temper.toUpperCase()}" not valid`);
 
-    newDog.addTemperament(findTemper);
-  });
+    await newDog.addTemperament(findTemper);
+  } 
 };
 module.exports = postNewDog;
