@@ -4,87 +4,125 @@
   align-items: center;
   justify-content: space-around;
   width: 200vh;
-  margin-top: 5rem;
+  margin-top: 1.5em;
 }
 
 .formContainer {
+  width: 100vh;
+  height: 80vh;
   display: flex;
-  /* background: cyan; */
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  overflow: auto;
 }
 
 .spaceTemper {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5em;
   justify-content: left;
 }
 
+.spaceHead {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5em;
+  gap: 3em;
+}
+
+
+
+
 .selectedOption {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: transparent;
-    color: orangered;
-    -webkit-text-stroke: 0.5px black;
-    padding: 5px 10px;
-    width: fit-content;
-    overflow: auto;
-    gap: 10px;
-  }
-  
-  .selectedOption button {
-    background: transparent;
-    border: dashed black 0.1rem;
-    font-size: 15px;
-    padding: 2px 5px;
-    margin-left: 5px;
-    cursor: pointer ;
-    white-space: pre-line;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
 
-  .labelInput {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    align-items: baseline;
-    justify-content: flex-start;
-  }
+.selectedOption button {
+  background: transparent;
+  margin-top: 0.7em;
+  border: dashed black 0.1rem;
+  font-size: 15px;
+  padding: 2px 5px;
+  margin-left: 5px;
+  cursor: pointer;
+  white-space: pre-line;
+}
 
-  .message {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10rem;
-    padding-top: 3rem;
-  }
-  
-  .messageBack {
-    font-size: xx-large;
-    font-weight: bold;
-    
-  }
-  
-  .messageCreation {
-    font-size: larger;
-    font-style: italic;
-    border-bottom: 1px solid black ;
-    margin-bottom: 1rem;
-  }
-  
-  .messageBack a {
-    text-decoration: none;
-    color: black;
-  }
+.selectedOption p {
+  margin: 0;
+  padding: 0.3rem;
+  background-color: orangered;
+  color: white;
+  border-radius: 5px;
+}
 
-  .errorMsg {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-style: oblique;
-    font-size: small;
-    color: firebrick;
-    padding: 0.5rem;
-  }
+.labelInput {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7rem;
+  gap: 3em;
+}
+
+.messageBack {
+  padding-top: 1em;
+  font-size: xx-large;
+  font-weight: bold;
+
+}
+
+.messageCreation {
+  font-size: larger;
+  font-style: italic;
+  border-bottom: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+.messageBack a {
+  text-decoration: none;
+  color: black;
+}
+
+.errorMsg {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-style: oblique;
+  font-size: small;
+  color: firebrick;
+  padding: 0.5rem;
+}
+
+.splitBtn {
+  display: flex;
+  justify-content: space-around;
+  gap: 2em;
+}
+
+.okBtn {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.okBtn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

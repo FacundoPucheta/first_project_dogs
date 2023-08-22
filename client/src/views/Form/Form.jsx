@@ -126,16 +126,19 @@ useEffect(() => {
     <div  className={styles.formContainer}>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
         
+      <div className={styles.spaceHead}>
         <div className={styles.labelInput}>
           <label>Name: </label>
           <input type="text" name="name" value={newBreed.name} onChange={handleChange}/>
-          {formValidate.name && <div className={styles.errorMsg} >{formValidate.name}</div>}
+          {formValidate.name ? <div className={styles.errorMsg} >{formValidate.name}</div> : <div className={styles.errorMsg}> </div>}
         </div>
         <div className={styles.labelInput}>
           <label>Image URL: </label>
-          <input type="text" placeholder=" - max of 2000 chars " name="image" value={newBreed.image} onChange={handleChange}/>
-          
+          <input type="text" placeholder="  max of 2000 chars " name="image" value={newBreed.image} onChange={handleChange}/>
+          <div className={styles.errorMsg}> </div>
         </div>
+        </div>
+
         <div className={styles.spaceTemper}>
         <div className={styles.labelInput}>
           <label>Height: 
@@ -143,7 +146,7 @@ useEffect(() => {
           max <input placeholder="-> m. <-" type="text" name="maxHeight" value={newBreed.maxHeight} onChange={handleChange}/>
           </label>
           <div>
-          {formValidate.height && <div className={styles.errorMsg} >{formValidate.height}</div>}
+          {formValidate.height ? <div className={styles.errorMsg} >{formValidate.height}</div> : <div className={styles.errorMsg}> </div>}
           </div>
         </div>
         <div className={styles.labelInput}>
@@ -152,7 +155,7 @@ useEffect(() => {
           max <input placeholder="-> kg. <-" type="text" name="maxWeight" value={newBreed.maxWeight} onChange={handleChange}/>
           </label>
           <div>
-          {formValidate.weight && <div className={styles.errorMsg} >{formValidate.weight}</div>}
+          {formValidate.weight ? <div className={styles.errorMsg} >{formValidate.weight}</div> : <div className={styles.errorMsg}> </div>}
           </div>
         </div>
         <div className={styles.labelInput}>
@@ -161,7 +164,7 @@ useEffect(() => {
             max <input placeholder="-> years <-" type="text" name="maxLifespan" value={newBreed.maxLifespan} onChange={handleChange}/>
           </label>
           <div>
-            {formValidate.life_span && <div className={styles.errorMsg} >{formValidate.life_span}</div>}
+            {formValidate.life_span ? <div className={styles.errorMsg} >{formValidate.life_span}</div> : <div className={styles.errorMsg}> </div>}
             </div>
         </div>
         
@@ -181,7 +184,6 @@ useEffect(() => {
           
         </div>
         </div>
-        <button onClick={handleSubmit} disabled={(Object.keys(formValidate).length > 0 ) || (!selectScreen.length)}>Create! ✔️</button> 
         
       </form>
       </div>
@@ -189,6 +191,7 @@ useEffect(() => {
         <div className={styles.messageCreation}>
       {creationState === "Dog breed created successfully!" ? <p style={{ color: "green"}}>{creationState}</p> : <p style={{ color: "red" }}>{creationState}</p> }
       </div>
+      <button className={styles.okBtn} onClick={handleSubmit} disabled={(Object.keys(formValidate).length > 0 ) || (!selectScreen.length)}>Create! ✔️</button> 
       <div className={styles.messageBack} >
       <NavLink to="/home"  onClick={()=> handleBack()}>
         Go back !
