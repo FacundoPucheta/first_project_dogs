@@ -126,3 +126,18 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+
+input {
+  background-color: white;
+  border-radius: 99px;
+  border: 1px solid black;
+  will-change: border;
+  transition: 0.7s ease-in-out
+}
+
+input:focus {
+  background-color: transparent;
+  color: black;
+  border: 1px solid orangered;
+  outline: solid orange; /* Agrega esto para quitar el contorno predeterminado en el enfoque */
+}
