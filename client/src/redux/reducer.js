@@ -22,13 +22,12 @@ const initialState = {
   dogs: [],
   temperaments: [],
   numPage: 1,
-  lastNumPage:1,
+  lastNumPage: 1,
   error: [],
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-
     case GET_ALL_DOGS:
       return {
         ...state,
@@ -66,7 +65,8 @@ const reducer = (state = initialState, { type, payload }) => {
       const temperFilter = dogsCopy.filter((dog) =>
         dog.temperament?.toLowerCase().includes(payload)
       );
-      if(temperFilter.length === 0) return {...state, error:"Dogs not found.." }
+      if (temperFilter.length === 0)
+        return { ...state, error: "Dogs not found.." };
       return {
         ...state,
         dogs: temperFilter,
@@ -85,11 +85,12 @@ const reducer = (state = initialState, { type, payload }) => {
         dogSource = state.dogs.filter((dog) => dog.belongToDb === true);
       }
 
-      if(dogSource.length === 0) return {
-        ...state, 
-        numPage: 1,
-        error: "Dogs not found.."
-      }
+      if (dogSource.length === 0)
+        return {
+          ...state,
+          numPage: 1,
+          error: "Dogs not found..",
+        };
       return {
         ...state,
         dogs: dogSource,
@@ -110,9 +111,13 @@ const reducer = (state = initialState, { type, payload }) => {
         ...state,
         dogs:
           payload === "A"
-            ? state.dogs.sort((a, b) => a.weight?.split("-")[0] - b.weight?.split("-")[0])
-            : state.dogs.sort((a, b) => b.weight?.split("-")[1] - a.weight?.split("-")[1]),
-        };
+            ? state.dogs.sort(
+                (a, b) => a.weight?.split("-")[0] - b.weight?.split("-")[0]
+              )
+            : state.dogs.sort(
+                (a, b) => b.weight?.split("-")[1] - a.weight?.split("-")[1]
+              ),
+      };
 
     case PREV_PAGE:
       return {

@@ -1,5 +1,6 @@
 .card {
   display: flex;
+  background: transparent;
   flex-direction: column;
   align-items: center;
   padding: 0.5rem;
@@ -36,11 +37,13 @@
   color: black;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  will-change: transition;
+  transition: 0.3s ease-in-out;
 }
 
 
 .link:hover {
-  text-decoration: overline ;
+  text-decoration: wavy ;
   color: #f7630c;
 }
 

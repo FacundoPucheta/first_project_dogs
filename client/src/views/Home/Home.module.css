@@ -29,7 +29,7 @@
 .container3 {
     display: flex;
     flex-direction: column;
-    width: auto;
+    gap: 1em;
     align-items: stretch;
     margin-inline: 0.1em;
     margin-bottom: auto;
@@ -77,17 +77,18 @@
     width: auto;
     cursor: pointer;
     padding: 0.5rem;
-    margin-bottom: 0.3rem;
+    margin-block: 0.3rem;
+    transition: 0.5s ease-in-out;
 }
 
 .button3:hover {
-    transform: translateY(-2px);
-    border: none;
-    background-color: rgba(207, 115, 9, 0.747);
+    /* border-width: medium; */
+    border-color: beige;
+    background-color: black;
     color: white;
+    font-weight: bolder;
     font-size: large;
-    font-weight: bold;
-    border-radius: 9999999999px;
+    
 }
 /* 
 .pawsFiller {
