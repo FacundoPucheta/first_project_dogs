@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <div className={styles.mainContainerHome}>
       <div className={styles.container1}>
-        <div >
+        <div>
           <Filters />
         </div>
 
@@ -40,8 +40,12 @@ const Home = () => {
               CREATE!
             </button>
           </div>
-          <div className={styles.container3} >
-            <button style={{fontWeight: "bolder"}} className={styles.button3} onClick={handleClick}>
+          <div className={styles.container3}>
+            <button
+              style={{ fontWeight: "bolder" }}
+              className={styles.button3}
+              onClick={handleClick}
+            >
               Dogs Up!
             </button>
             <div>
